@@ -31,7 +31,7 @@ to_html(
         ),
         divv(:data_theme => "pastel", :class => "bg-transparent dark:bg-[#1f1f1f]",
 			divv(:class => "flex justify-center items-center",
-				divv(:class => "card card-bordered border-primary text-center w-full text-primary",
+				divv(:class => "card card-bordered border-primary text-center w-full dark:text-[#e6e6e6]",
 					divv(:class => "card-body flex flex-col justify-center items-center",
 						img(:src => "https://github.com/Dale-Black/GlassDocs/blob/master/images/icon-512x512.png?raw=true", :class => "h-10 w-full md:h-32 md:w-32", :alt => "Glass Logo"),
 						divv(:class => "text-5xl font-bold bg-gradient-to-r from-accent to-primary inline-block text-transparent bg-clip-text py-10", "Glass Docs"),
