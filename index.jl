@@ -50,9 +50,9 @@ md"""
 ## Tutorials
 """
 
-# ╔═╡ a496823a-1a54-4748-8d12-5607a3a71ef0
+# ╔═╡ 74bb8354-0ed3-468b-a04a-31d616411d66
 md"""
-## Package Development
+## Templates
 """
 
 # ╔═╡ 703818e8-3198-41e4-b3aa-febd834fdad8
@@ -78,19 +78,22 @@ end
 # ╔═╡ 13051266-2434-4153-9742-59baa70a3af3
 article_list_tutorials = Article[
 	Article("Getting Started", "getting_started.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"),
-	Article("API", "api.jl", "https://images.unsplash.com/photo-1503789146722-cf137a3c0fea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2562&q=80"),
+	Article("Advanced Usage", "advanced.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"),
 ];
 
-# ╔═╡ daed8bb3-4801-4016-ae8c-f66043dcd41b
-article_list_packages = Article[
-	Article("Building Docs", "getting_started.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"),
-	Article("API", "api.jl", "https://images.unsplash.com/photo-1503789146722-cf137a3c0fea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2562&q=80"),
+# ╔═╡ 480cad69-7f9f-4586-9013-0bb86b11428d
+article_list_templates = Article[
+	Article("Plain Repository", "plain_repo.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"),
+	Article("Package Documentation", "package_docs.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"),
+	Article("Teaching", "teaching.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"),
+	Article("Meta Package", "meta_package.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"),
 ];
 
 # ╔═╡ d0918768-3986-41f9-9bf3-6871ec38786b
 article_list_examples = Article[
 	Article("Brain Dancer GUI", "getting_started.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"),
-	Article("CalciumScoring.jl Docs", "api.jl", "https://images.unsplash.com/photo-1503789146722-cf137a3c0fea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2562&q=80"),
+	Article("CalciumScoring.jl Docs", "api.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"),
+	Article("Computational Thinking (in Glass Notebook)", "computational_thinking.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80")
 ];
 
 # ╔═╡ 3f506b79-a486-45a0-b5b2-d1066efc9378
@@ -119,17 +122,17 @@ to_html(
 	)
 )
 
-# ╔═╡ 0ad110dc-5784-43d9-8baf-c334870abadd
+# ╔═╡ 357797de-a50c-4a52-bf26-7ecfc8719e64
 to_html(
 	divv(:class => "grid grid-cols-2 gap-4",
-		[article_card(article, "secondary") for article in article_list_packages]...
+		[article_card(article, "secondary") for article in article_list_templates]...
 	)
 )
 
 # ╔═╡ 3d3caa2e-70e2-41d7-973f-95a9082ea59e
 to_html(
 	divv(:class => "grid grid-cols-2 gap-4",
-		[article_card(article, "primary") for article in article_list_packages]...
+		[article_card(article, "neutral") for article in article_list_examples]...
 	)
 )
 
@@ -137,8 +140,8 @@ to_html(
 # ╟─60680bd6-23f3-4b22-b164-6c06c093fc7f
 # ╟─7d93c867-6122-422b-8f95-efd6fab82b04
 # ╟─113c5ddf-00c4-4fab-bd22-85ab1fd72ba7
-# ╟─a496823a-1a54-4748-8d12-5607a3a71ef0
-# ╟─0ad110dc-5784-43d9-8baf-c334870abadd
+# ╟─74bb8354-0ed3-468b-a04a-31d616411d66
+# ╟─357797de-a50c-4a52-bf26-7ecfc8719e64
 # ╟─703818e8-3198-41e4-b3aa-febd834fdad8
 # ╟─3d3caa2e-70e2-41d7-973f-95a9082ea59e
 # ╟─d6bd6300-5b14-4ab4-b519-ed59b466adb9
@@ -146,6 +149,6 @@ to_html(
 # ╠═e6c24576-9dec-4daf-8606-66b646318bb8
 # ╠═56badbe6-b2e6-49f2-9cc6-5584f16dda86
 # ╠═13051266-2434-4153-9742-59baa70a3af3
-# ╠═daed8bb3-4801-4016-ae8c-f66043dcd41b
+# ╠═480cad69-7f9f-4586-9013-0bb86b11428d
 # ╠═d0918768-3986-41f9-9bf3-6871ec38786b
 # ╠═3f506b79-a486-45a0-b5b2-d1066efc9378
