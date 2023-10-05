@@ -15,7 +15,7 @@ begin
 	Pkg.add(url = "https://github.com/Dale-Black/HTML.jl")
 	Pkg.add("PlutoUI")
 
-	using HTML: to_html, head, link, script, divv, h1, img, p, span, a, figure
+	using HTML: to_html, head, link, script, divv, h1, img, p, span, a, figure, hr
 	using PlutoUI
 end
 
@@ -60,9 +60,19 @@ md"""
 ## Real-World Examples
 """
 
+# ╔═╡ 546b7906-c112-4225-aa81-e7138ae352cb
+to_html(
+	divv(
+		p(:class => "h-20"),
+		hr()
+	)
+)
+
 # ╔═╡ d6bd6300-5b14-4ab4-b519-ed59b466adb9
 md"""
-# Appendix
+#### Appendix
+
+Note that the cells used to create this homepage are hidden below. Go to GitHub to view the cells, or even better, look at the `templates` folder to get started creating your own homepage.
 """
 
 # ╔═╡ e6c24576-9dec-4daf-8606-66b646318bb8
@@ -113,7 +123,7 @@ function article_card(article::Article, color::String)
 			)
 		)
 	)
-end
+end;
 
 # ╔═╡ 113c5ddf-00c4-4fab-bd22-85ab1fd72ba7
 to_html(
@@ -144,11 +154,12 @@ to_html(
 # ╟─357797de-a50c-4a52-bf26-7ecfc8719e64
 # ╟─703818e8-3198-41e4-b3aa-febd834fdad8
 # ╟─3d3caa2e-70e2-41d7-973f-95a9082ea59e
+# ╟─546b7906-c112-4225-aa81-e7138ae352cb
 # ╟─d6bd6300-5b14-4ab4-b519-ed59b466adb9
-# ╠═d2127ac7-3e13-453f-9843-1d3e0c554b1e
-# ╠═e6c24576-9dec-4daf-8606-66b646318bb8
-# ╠═56badbe6-b2e6-49f2-9cc6-5584f16dda86
-# ╠═13051266-2434-4153-9742-59baa70a3af3
-# ╠═480cad69-7f9f-4586-9013-0bb86b11428d
-# ╠═d0918768-3986-41f9-9bf3-6871ec38786b
-# ╠═3f506b79-a486-45a0-b5b2-d1066efc9378
+# ╟─d2127ac7-3e13-453f-9843-1d3e0c554b1e
+# ╟─e6c24576-9dec-4daf-8606-66b646318bb8
+# ╟─56badbe6-b2e6-49f2-9cc6-5584f16dda86
+# ╟─13051266-2434-4153-9742-59baa70a3af3
+# ╟─480cad69-7f9f-4586-9013-0bb86b11428d
+# ╟─d0918768-3986-41f9-9bf3-6871ec38786b
+# ╟─3f506b79-a486-45a0-b5b2-d1066efc9378
