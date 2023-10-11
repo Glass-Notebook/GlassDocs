@@ -1,6 +1,10 @@
 ### A Pluto.jl notebook ###
 # v0.19.26
 
+#> [frontmatter]
+#> title = "Advanced Usage"
+#> category = "Tutorials"
+
 using Markdown
 using InteractiveUtils
 
