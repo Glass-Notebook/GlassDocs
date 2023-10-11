@@ -1,4 +1,5 @@
 name = "GlassDocs"
-uuid = "8500e148-04ff-447c-a0d5-5b8bd61f5b42"
-authors = ["Dale Black <djblack@uci.edu>"]
-version = "0.1.0"
+
+[deps]
+HTMLStrings = "c47fe496-5789-4377-b1db-55e89f2ee0c6"
+PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"

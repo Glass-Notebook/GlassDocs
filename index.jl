@@ -8,54 +8,28 @@
 using Markdown
 using InteractiveUtils
 
-# ╔═╡ d2127ac7-3e13-453f-9843-1d3e0c554b1e
+# ╔═╡ d871cef8-5f6d-4279-8949-616b6ca76396
 # ╠═╡ show_logs = false
 begin
-	using Pkg; Pkg.activate(temp = true)
-	Pkg.add(url = "https://github.com/Dale-Black/HTML.jl")
-	Pkg.add("PlutoUI")
+	using Pkg
+	Pkg.activate(".")
+	Pkg.instantiate()
 
-	using HTML: to_html, head, link, script, divv, h1, img, p, span, a, figure, hr
+	using HTMLStrings: to_html, head, link, script, divv, h1, img, p, span, a, figure, hr
 	using PlutoUI
 end
 
-# ╔═╡ 60680bd6-23f3-4b22-b164-6c06c093fc7f
-to_html(
-    divv(
-        head(
-            link(:rel => "preconnect", :href => "https://fonts.googleapis.com"),
-			link(:rel => "preconnect", :href => "https://fonts.gstatic.com", :crossorigin => ""),
-			link(:href => "https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,400;0,700;1,400&family=Vollkorn:ital,wght@0,400;0,700;1,400;1,700&display=swap", :rel => "stylesheet"),
-			link(:href => "https://cdn.jsdelivr.net/npm/daisyui@3.7.4/dist/full.css", :rel => "stylesheet", :type => "text/css"),
-            script(:src => "https://cdn.tailwindcss.com")
-        ),
-        divv(:data_theme => "pastel", :class => "bg-transparent dark:bg-[#1f1f1f]",
-			divv(:class => "flex justify-center items-center",
-				divv(:class => "card card-bordered border-primary text-center w-full dark:text-[#e6e6e6]",
-					divv(:class => "card-body flex flex-col justify-center items-center",
-						img(:src => "https://github.com/Dale-Black/GlassDocs/blob/master/images/icon-512x512.png?raw=true", :class => "h-10 w-full md:h-32 md:w-32", :alt => "Glass Logo"),
-						divv(:class => "text-5xl font-bold bg-gradient-to-r from-accent to-primary inline-block text-transparent bg-clip-text py-10", "Glass Docs"),
-						p(:class => "card-text text-md font-serif", "Publish, interactive Pluto.jl notebooks with one click"
-						)
-                    )
-                )
-            )
-        )
-    )
-)
-
-
-# ╔═╡ 7d93c867-6122-422b-8f95-efd6fab82b04
+# ╔═╡ ba9e26af-94fc-47e0-9dfe-03fd0468c0c7
 md"""
 ## Tutorials
 """
 
-# ╔═╡ 74bb8354-0ed3-468b-a04a-31d616411d66
+# ╔═╡ 6cb7945c-6e2d-46fd-bf1c-fa51971645bd
 md"""
 ## Templates
 """
 
-# ╔═╡ 703818e8-3198-41e4-b3aa-febd834fdad8
+# ╔═╡ 5a5af88e-b35d-4660-90e9-60a864ae77bb
 md"""
 ## Real-World Examples
 """
@@ -72,94 +46,124 @@ to_html(
 md"""
 #### Appendix
 
-Note that the cells used to create this homepage are hidden below. Go to GitHub to view the cells, or even better, look at the `templates` folder to get started creating your own homepage.
+Note that the cells used to create this homepage are hidden below. Go to GitHub to view the cells, or even better, look at the [tempates](https://glassnotebook.io/) folder to start creating your own homepage.
 """
 
-# ╔═╡ e6c24576-9dec-4daf-8606-66b646318bb8
+# ╔═╡ 6ae1c5d0-4021-40ac-9bc0-bb9d0fab9fa4
 TableOfContents()
 
-# ╔═╡ 56badbe6-b2e6-49f2-9cc6-5584f16dda86
+# ╔═╡ 49fe3920-26ab-4873-8413-3418d5552f7f
+data_theme = "dark";
+
+# ╔═╡ 2e47591b-1156-4f07-9934-f7983a801c2c
+function index_title_card(title::String, subtitle::String, image_url::String; data_theme::String = "pastel", border_color::String = "primary")
+	return to_html(
+	    divv(
+	        head(
+				link(:href => "https://cdn.jsdelivr.net/npm/daisyui@3.7.4/dist/full.css", :rel => "stylesheet", :type => "text/css"),
+	            script(:src => "https://cdn.tailwindcss.com")
+	        ),
+			divv(:data_theme => "$data_theme", :class => "card card-bordered flex justify-center items-center border-$border_color text-center w-full dark:text-[#e6e6e6]",
+				divv(:class => "card-body flex flex-col justify-center items-center",
+					img(:src => "$image_url", :class => "h-24 w-24 md:h-40 md:w-40 rounded-md", :alt => "$title Logo"),
+					divv(:class => "text-5xl font-bold bg-gradient-to-r from-accent to-primary inline-block text-transparent bg-clip-text py-10", "$title"),
+					p(:class => "card-text text-md font-serif", "$subtitle"
+					)
+				)
+			)
+	    )
+	)
+end;
+
+# ╔═╡ e72eb673-ee5e-4e61-9188-0c7381efbdab
+index_title_card(
+	"GlassDocs",
+	"Publish, interactive Pluto.jl notebooks with one click",
+	"https://github.com/Dale-Black/GlassDocs/blob/master/images/icon-512x512.png?raw=true";
+	data_theme = data_theme
+)
+
+# ╔═╡ 4e1f222a-213a-4e4b-a53a-8e801b5041a0
 struct Article
 	title::String
 	path::String
 	image_url::String
 end
 
-# ╔═╡ 13051266-2434-4153-9742-59baa70a3af3
+# ╔═╡ 3235397b-1b36-403a-afda-4b0c08b907fa
 article_list_tutorials = Article[
-	Article("Getting Started", "getting_started.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"),
-	Article("Advanced Usage", "advanced.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"),
+	Article("Getting Started", "01_getting_started.jl", "https://img.freepik.com/free-vector/hand-drawn-starting-line-business-illustration_23-2149540609.jpg"),
+	Article("Advanced Usage", "02_advanced.jl", "https://img.freepik.com/free-vector/trio-set-realistic-technology-collection-with-circels-squares-other-things-centre-blue_1284-49186.jpg"),
 ];
 
-# ╔═╡ 480cad69-7f9f-4586-9013-0bb86b11428d
+# ╔═╡ 5100ded4-9580-4911-83bc-df088a1cbcd2
 article_list_templates = Article[
-	Article("Plain Repository", "plain_repo.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"),
-	Article("Package Documentation", "package_docs.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"),
-	Article("Teaching", "teaching.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"),
-	Article("Meta Package", "meta_package.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"),
+	Article("Plain Repository", "plain_repo.jl", "https://img.freepik.com/free-vector/notebook-mockup_1017-6288.jpg"),
+	Article("Package Documentation", "package_docs.jl", "https://img.freepik.com/free-vector/online-document-concept-illustration_114360-5453.jpg"),
+	Article("Teaching", "teaching.jl", "https://img.freepik.com/free-vector/teacher-standing-near-blackboard-holding-stick-isolated-flat-vector-illustration-cartoon-woman-character-near-chalkboard-pointing-alphabet_74855-8600.jpg"),
+	Article("Meta Package", "meta_package.jl", "https://img.freepik.com/free-vector/four-blue-puzzle-pieces_78370-1141.jpg"),
 ];
 
-# ╔═╡ d0918768-3986-41f9-9bf3-6871ec38786b
+# ╔═╡ 3b764991-4764-4e01-b9a4-eecc0810d798
 article_list_examples = Article[
-	Article("Brain Dancer GUI", "getting_started.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"),
-	Article("CalciumScoring.jl Docs", "api.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80"),
-	Article("Computational Thinking (in Glass Notebook)", "computational_thinking.jl", "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80")
+	Article("CalciumScoring.jl Docs", "https://glassnotebook.io/r/zn0Xr-A1cYegYHSDJzSyO/docs/index.jl", "https://img.freepik.com/free-vector/ct-scan-concept-illustration_114360-7073.jpg"),
+	Article("Brain Dancer GUI", "https://glassnotebook.io/r/Wx63p40sJffuoB_ZkFy_D/index.jl", "https://alascience.com/wp-content/uploads/2020/07/Logo-registered-trademark.jpg"),
+	Article("DistanceTransforms.jl Docs", "https://glassnotebook.io/r/DxnIPJnIqpEqiQnJgqiBP/docs/index.jl", "https://img.freepik.com/free-vector/global-communication-background-business-network-vector-design_53876-151122.jpg"),
+	Article("Computational Thinking (in Glass Notebook) (TODO)", "https://computationalthinking.mit.edu/Fall23/", "https://user-images.githubusercontent.com/6933510/136196552-ce16c06f-bd12-427f-80e5-aedb1fbc734a.png")
 ];
 
-# ╔═╡ 3f506b79-a486-45a0-b5b2-d1066efc9378
-function article_card(article::Article, color::String)
-	a(:href => article.path,
-		divv(:data_theme => "pastel", :class => "bg-transparent dark:bg-[#1f1f1f]",
-			divv(:class => "flex justify-center items-center",
-				divv(:class => "card card-bordered border-$color text-center w-full dark:text-[#e6e6e6]",
-					divv(:class => "card-body flex flex-col justify-center items-center",
-						p(:class => "card-title", article.title),
-						p("Click to open the notebook")
-					),
-					figure(
-						img(:src => article.image_url, :alt => article.title)
-					)
-				)
+# ╔═╡ 7ba5d949-ab06-4b2f-bb9c-5731bce9f73f
+function article_card(article::Article, color::String; data_theme = "pastel")
+    a(:href => article.path, :class => "w-1/2 p-2",
+		divv(:data_theme => "$data_theme", :class => "card card-bordered border-$color text-center dark:text-[#e6e6e6]",
+			divv(:class => "card-body justify-center items-center h-40",
+				p(:class => "card-title", article.title),
+				p("Click to open the notebook")
+			),
+			figure(
+				img(:class => "w-full h-48", :src => article.image_url, :alt => article.title)
 			)
-		)
-	)
+        )
+    )
 end;
 
-# ╔═╡ 113c5ddf-00c4-4fab-bd22-85ab1fd72ba7
+# ╔═╡ 305ef451-9de9-4005-8495-2066052e9be8
 to_html(
-	divv(:class => "grid grid-cols-2 gap-4",
-		[article_card(article, "accent") for article in article_list_tutorials]...
-	)
+    divv(:class => "flex flex-wrap justify-center items-start",
+        [article_card(article, "secondary"; data_theme = data_theme) for article in article_list_tutorials]...
+    )
 )
 
-# ╔═╡ 357797de-a50c-4a52-bf26-7ecfc8719e64
+# ╔═╡ e3012e28-b3ef-4007-a550-92444a6c783d
 to_html(
-	divv(:class => "grid grid-cols-2 gap-4",
-		[article_card(article, "secondary") for article in article_list_templates]...
-	)
+    divv(:class => "flex flex-wrap justify-center items-start",
+        [article_card(article, "primary"; data_theme = data_theme) for article in article_list_templates]...
+    )
 )
 
-# ╔═╡ 3d3caa2e-70e2-41d7-973f-95a9082ea59e
+# ╔═╡ 0b32fad4-0ec7-4590-952f-ec438ce1900a
 to_html(
-	divv(:class => "grid grid-cols-2 gap-4",
-		[article_card(article, "neutral") for article in article_list_examples]...
-	)
+    divv(:class => "flex flex-wrap justify-center items-start",
+        [article_card(article, "accent"; data_theme = data_theme) for article in article_list_examples]...
+    )
 )
 
 # ╔═╡ Cell order:
-# ╟─60680bd6-23f3-4b22-b164-6c06c093fc7f
-# ╟─7d93c867-6122-422b-8f95-efd6fab82b04
-# ╟─113c5ddf-00c4-4fab-bd22-85ab1fd72ba7
-# ╟─74bb8354-0ed3-468b-a04a-31d616411d66
-# ╟─357797de-a50c-4a52-bf26-7ecfc8719e64
-# ╟─703818e8-3198-41e4-b3aa-febd834fdad8
-# ╟─3d3caa2e-70e2-41d7-973f-95a9082ea59e
+# ╟─e72eb673-ee5e-4e61-9188-0c7381efbdab
+# ╟─ba9e26af-94fc-47e0-9dfe-03fd0468c0c7
+# ╠═305ef451-9de9-4005-8495-2066052e9be8
+# ╟─6cb7945c-6e2d-46fd-bf1c-fa51971645bd
+# ╟─e3012e28-b3ef-4007-a550-92444a6c783d
+# ╟─5a5af88e-b35d-4660-90e9-60a864ae77bb
+# ╟─0b32fad4-0ec7-4590-952f-ec438ce1900a
 # ╟─546b7906-c112-4225-aa81-e7138ae352cb
 # ╟─d6bd6300-5b14-4ab4-b519-ed59b466adb9
-# ╟─d2127ac7-3e13-453f-9843-1d3e0c554b1e
-# ╟─e6c24576-9dec-4daf-8606-66b646318bb8
-# ╟─56badbe6-b2e6-49f2-9cc6-5584f16dda86
-# ╟─13051266-2434-4153-9742-59baa70a3af3
-# ╟─480cad69-7f9f-4586-9013-0bb86b11428d
-# ╟─d0918768-3986-41f9-9bf3-6871ec38786b
-# ╟─3f506b79-a486-45a0-b5b2-d1066efc9378
+# ╠═6ae1c5d0-4021-40ac-9bc0-bb9d0fab9fa4
+# ╠═d871cef8-5f6d-4279-8949-616b6ca76396
+# ╠═49fe3920-26ab-4873-8413-3418d5552f7f
+# ╠═2e47591b-1156-4f07-9934-f7983a801c2c
+# ╠═4e1f222a-213a-4e4b-a53a-8e801b5041a0
+# ╠═3235397b-1b36-403a-afda-4b0c08b907fa
+# ╠═5100ded4-9580-4911-83bc-df088a1cbcd2
+# ╠═3b764991-4764-4e01-b9a4-eecc0810d798
+# ╠═7ba5d949-ab06-4b2f-bb9c-5731bce9f73f
