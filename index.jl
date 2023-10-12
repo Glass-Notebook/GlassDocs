@@ -98,7 +98,7 @@ article_list_tutorials = Article[
 
 # ╔═╡ 5100ded4-9580-4911-83bc-df088a1cbcd2
 article_list_templates = Article[
-	Article("Plain Repository", "templates/plain_repository/index.jl", "https://img.freepik.com/free-vector/notebook-mockup_1017-6288.jpg"),
+	Article("Basic Repository", "templates/BasicRepository/index.jl", "https://img.freepik.com/free-vector/notebook-mockup_1017-6288.jpg"),
 	Article("Package Documentation", "templates/ExamplePackage/index.jl", "https://img.freepik.com/free-vector/online-document-concept-illustration_114360-5453.jpg"),
 	Article("Teaching (TODO)", "", "https://img.freepik.com/free-vector/teacher-standing-near-blackboard-holding-stick-isolated-flat-vector-illustration-cartoon-woman-character-near-chalkboard-pointing-alphabet_74855-8600.jpg"),
 	Article("Meta Package (TODO)", "", "https://img.freepik.com/free-vector/four-blue-puzzle-pieces_78370-1141.jpg"),
