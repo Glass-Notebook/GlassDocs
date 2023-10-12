@@ -2,7 +2,7 @@
 # v0.19.26
 
 #> [frontmatter]
-#> title = "Plain Repository"
+#> title = "Plain Repository "
 #> category = "Templates"
 
 using Markdown

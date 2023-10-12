@@ -2,7 +2,7 @@
 # v0.19.26
 
 #> [frontmatter]
-#> title = "Package Docmentation"
+#> title = "Package Documentation"
 #> category = "Templates"
 
 using Markdown

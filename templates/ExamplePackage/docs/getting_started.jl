@@ -4,6 +4,7 @@
 #> [frontmatter]
 #> title = "Getting Started"
 #> category = "Tutorials"
+#> sidebar = "false"
 
 using Markdown
 using InteractiveUtils
