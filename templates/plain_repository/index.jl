@@ -2,8 +2,8 @@
 # v0.19.26
 
 #> [frontmatter]
-#> title = "GlassDocs"
-#> sidebar = "false"
+#> title = "Plain Repository"
+#> category = "Templates"
 
 using Markdown
 using InteractiveUtils

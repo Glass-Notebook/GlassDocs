@@ -98,10 +98,10 @@ article_list_tutorials = Article[
 
 # ╔═╡ 5100ded4-9580-4911-83bc-df088a1cbcd2
 article_list_templates = Article[
-	Article("Plain Repository", "plain_repository/index.jl", "https://img.freepik.com/free-vector/notebook-mockup_1017-6288.jpg"),
-	Article("Package Documentation", "package_docs.jl", "https://img.freepik.com/free-vector/online-document-concept-illustration_114360-5453.jpg"),
-	Article("Teaching", "teaching.jl", "https://img.freepik.com/free-vector/teacher-standing-near-blackboard-holding-stick-isolated-flat-vector-illustration-cartoon-woman-character-near-chalkboard-pointing-alphabet_74855-8600.jpg"),
-	Article("Meta Package", "meta_package.jl", "https://img.freepik.com/free-vector/four-blue-puzzle-pieces_78370-1141.jpg"),
+	Article("Plain Repository", "templates/plain_repository/index.jl", "https://img.freepik.com/free-vector/notebook-mockup_1017-6288.jpg"),
+	Article("Package Documentation", "templates/ExamplePackage/index.jl", "https://img.freepik.com/free-vector/online-document-concept-illustration_114360-5453.jpg"),
+	Article("Teaching (TODO)", "", "https://img.freepik.com/free-vector/teacher-standing-near-blackboard-holding-stick-isolated-flat-vector-illustration-cartoon-woman-character-near-chalkboard-pointing-alphabet_74855-8600.jpg"),
+	Article("Meta Package (TODO)", "", "https://img.freepik.com/free-vector/four-blue-puzzle-pieces_78370-1141.jpg"),
 ];
 
 # ╔═╡ 3b764991-4764-4e01-b9a4-eecc0810d798
@@ -158,12 +158,12 @@ to_html(
 # ╟─0b32fad4-0ec7-4590-952f-ec438ce1900a
 # ╟─546b7906-c112-4225-aa81-e7138ae352cb
 # ╟─d6bd6300-5b14-4ab4-b519-ed59b466adb9
-# ╟─6ae1c5d0-4021-40ac-9bc0-bb9d0fab9fa4
-# ╟─d871cef8-5f6d-4279-8949-616b6ca76396
-# ╟─49fe3920-26ab-4873-8413-3418d5552f7f
-# ╟─2e47591b-1156-4f07-9934-f7983a801c2c
-# ╟─4e1f222a-213a-4e4b-a53a-8e801b5041a0
-# ╟─3235397b-1b36-403a-afda-4b0c08b907fa
-# ╟─5100ded4-9580-4911-83bc-df088a1cbcd2
-# ╟─3b764991-4764-4e01-b9a4-eecc0810d798
-# ╟─7ba5d949-ab06-4b2f-bb9c-5731bce9f73f
+# ╠═6ae1c5d0-4021-40ac-9bc0-bb9d0fab9fa4
+# ╠═d871cef8-5f6d-4279-8949-616b6ca76396
+# ╠═49fe3920-26ab-4873-8413-3418d5552f7f
+# ╠═2e47591b-1156-4f07-9934-f7983a801c2c
+# ╠═4e1f222a-213a-4e4b-a53a-8e801b5041a0
+# ╠═3235397b-1b36-403a-afda-4b0c08b907fa
+# ╠═5100ded4-9580-4911-83bc-df088a1cbcd2
+# ╠═3b764991-4764-4e01-b9a4-eecc0810d798
+# ╠═7ba5d949-ab06-4b2f-bb9c-5731bce9f73f

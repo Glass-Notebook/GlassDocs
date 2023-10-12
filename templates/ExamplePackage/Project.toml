@@ -1,0 +1,4 @@
+name = "ExamplePackage"
+uuid = "ed499494-d592-46b8-8303-aefe441ca4ab"
+authors = ["Dale Black <djblack@uci.edu>"]
+version = "0.1.0"
