@@ -8,6 +8,16 @@
 using Markdown
 using InteractiveUtils
 
+# This Pluto notebook uses @bind for interactivity. When running this notebook outside of Pluto, the following 'mock version' of @bind gives bound variables a default value (instead of an error).
+macro bind(def, element)
+    quote
+        local iv = try Base.loaded_modules[Base.PkgId(Base.UUID("6e696c72-6542-2067-7265-42206c756150"), "AbstractPlutoDingetjes")].Bonds.initial_value catch; b -> missing; end
+        local el = $(esc(element))
+        global $(esc(def)) = Core.applicable(Base.get, el) ? Base.get(el) : iv(el)
+        el
+    end
+end
+
 # ╔═╡ d871cef8-5f6d-4279-8949-616b6ca76396
 # ╠═╡ show_logs = false
 begin
@@ -55,8 +65,46 @@ Note that the cells used to create this homepage are hidden below. Go to GitHub 
 # ╔═╡ 6ae1c5d0-4021-40ac-9bc0-bb9d0fab9fa4
 TableOfContents()
 
+# ╔═╡ 8cff59f5-3ee5-4608-a8b7-b5e6c3d4af17
+themes = [
+	"light",
+	"dark",
+	"cupcake",
+	"bumblebee",
+	"emerald",
+	"corporate",
+	"synthwave",
+	"retro",
+	"cyberpunk",
+	"valentine",
+	"halloween",
+	"garden",
+	"forest",
+	"aqua",
+	"lofi",
+	"pastel",
+	"fantasy",
+	"wireframe",
+	"black",
+	"luxury",
+	"dracula",
+	"cmyk",
+	"autumn",
+	"business",
+	"acid",
+	"lemonade",
+	"night",
+	"coffee",
+	"winter"
+];
+
+# ╔═╡ 2afbaa0e-5ee0-42f4-a036-acda049ad0e5
+md"""
+Choose Theme: $(@bind theme PlutoUI.Select(themes, default = "forest"))
+"""
+
 # ╔═╡ 49fe3920-26ab-4873-8413-3418d5552f7f
-data_theme = "dark";
+data_theme = theme;
 
 # ╔═╡ 2e47591b-1156-4f07-9934-f7983a801c2c
 function index_title_card(title::String, subtitle::String, image_url::String; data_theme::String = "pastel", border_color::String = "primary")
@@ -152,6 +200,7 @@ to_html(
 )
 
 # ╔═╡ Cell order:
+# ╟─2afbaa0e-5ee0-42f4-a036-acda049ad0e5
 # ╟─e72eb673-ee5e-4e61-9188-0c7381efbdab
 # ╟─ba9e26af-94fc-47e0-9dfe-03fd0468c0c7
 # ╟─305ef451-9de9-4005-8495-2066052e9be8
@@ -161,9 +210,10 @@ to_html(
 # ╟─e3012e28-b3ef-4007-a550-92444a6c783d
 # ╟─546b7906-c112-4225-aa81-e7138ae352cb
 # ╟─d6bd6300-5b14-4ab4-b519-ed59b466adb9
-# ╟─6ae1c5d0-4021-40ac-9bc0-bb9d0fab9fa4
 # ╟─d871cef8-5f6d-4279-8949-616b6ca76396
+# ╟─6ae1c5d0-4021-40ac-9bc0-bb9d0fab9fa4
 # ╟─49fe3920-26ab-4873-8413-3418d5552f7f
+# ╟─8cff59f5-3ee5-4608-a8b7-b5e6c3d4af17
 # ╟─2e47591b-1156-4f07-9934-f7983a801c2c
 # ╟─4e1f222a-213a-4e4b-a53a-8e801b5041a0
 # ╟─3235397b-1b36-403a-afda-4b0c08b907fa
