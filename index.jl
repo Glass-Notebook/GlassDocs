@@ -21,11 +21,9 @@ end
 # ╔═╡ d871cef8-5f6d-4279-8949-616b6ca76396
 # ╠═╡ show_logs = false
 begin
-	using Pkg
-	Pkg.activate(".")
-	Pkg.instantiate()
+	using Pkg; Pkg.activate("."); Pkg.instantiate()
 
-	using HTMLStrings: to_html, head, link, script, divv, h1, img, p, span, a, figure, hr
+	using HTMLStrings: to_html, head, link, script, divv, h1, img, p, span, a, figure, hr, select, option, label
 	using PlutoUI
 end
 
@@ -90,12 +88,15 @@ themes = [
 	"lemonade",
 	"night",
 	"coffee",
-	"winter"
+	"winter",
+	"dim",
+	"nord",
+	"sunset",
 ];
 
 # ╔═╡ 2afbaa0e-5ee0-42f4-a036-acda049ad0e5
 md"""
-Choose Theme: $(@bind theme PlutoUI.Select(themes, default = "forest"))
+Choose Theme: $(@bind theme PlutoUI.Select(themes, default = "night"))
 """
 
 # ╔═╡ 49fe3920-26ab-4873-8413-3418d5552f7f
