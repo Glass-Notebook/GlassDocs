@@ -4,3 +4,6 @@
 [submodule "DistanceTransforms.jl"]
 	path = DistanceTransforms.jl
 	url = https://github.com/Dale-Black/DistanceTransforms.jl
+[submodule "CalciumScoring.jl"]
+	path = CalciumScoring.jl
+	url = https://github.com/Dale-Black/CalciumScoring.jl
