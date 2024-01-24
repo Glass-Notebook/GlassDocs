@@ -126,7 +126,7 @@ end;
 index_title_card(
 	"GlassDocs",
 	"Publish, interactive Pluto.jl notebooks with one click",
-	"https://github.com/Dale-Black/GlassDocs/blob/master/images/icon-512x512.png?raw=true";
+	"https://github.com/Dale-Black/GlassDocs/blob/master/assets/icon-512x512.png?raw=true";
 	data_theme = data_theme
 )
 
