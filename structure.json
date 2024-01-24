@@ -64,7 +64,14 @@
                         "type": "folder",
                         "title": "Meta Docs",
                         "defaultOpened": false,
-                        "elements": []
+                        "elements": [
+                            {
+                                "type": "folder",
+                                "title": "ComputerVisionTutorials.jl",
+                                "path": "ComputerVisionTutorials.jl",
+                                "defaultOpened": false
+                            }
+                        ]
                     }
                 ]
             }
