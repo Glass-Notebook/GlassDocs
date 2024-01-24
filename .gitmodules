@@ -1,0 +1,6 @@
+[submodule "Losers.jl"]
+	path = Losers.jl
+	url = https://github.com/Dale-Black/Losers.jl
+[submodule "DistanceTransforms.jl"]
+	path = DistanceTransforms.jl
+	url = https://github.com/Dale-Black/DistanceTransforms.jl
