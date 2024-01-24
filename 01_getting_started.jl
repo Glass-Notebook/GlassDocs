@@ -100,10 +100,10 @@ Choose whether or not to make notebooks interactive by toggling the cloud near t
 """
 
 # ╔═╡ 6a3fbcd3-d2bb-4eff-80ab-82a08b76b56f
-toggle_interactive_url = "https://github.com/Dale-Black/GlassDocs/blob/master/assets/toggleinteractive.png?raw=true";
+toggle_interactive_url = "https://github.com/Dale-Black/GlassDocs/blob/master/assets/toggleinteractive.jpeg?raw=true";
 
 # ╔═╡ ead0836b-0717-4c1f-b264-4006744a3de9
-Resource(toggle_private_url)
+Resource(toggle_interactive_url)
 
 # ╔═╡ 0c9cad59-efeb-45ae-b83f-4154d848972f
 
