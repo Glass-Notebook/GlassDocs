@@ -37,12 +37,14 @@
                             {
                                 "type": "folder",
                                 "title": "Losers.jl",
-                                "path": "Losers.jl"
+                                "path": "Losers.jl",
+                                "defaultOpened": false
                             },
                             {
                                 "type": "folder",
                                 "title": "DistanceTransforms.jl",
-                                "path": "DistanceTransforms.jl"
+                                "path": "DistanceTransforms.jl",
+                                "defaultOpened": false
                             }
                         ]
                     },
