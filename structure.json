@@ -52,7 +52,14 @@
                         "type": "folder",
                         "title": "Tutorials",
                         "defaultOpened": false,
-                        "elements": []
+                        "elements": [
+                            {
+                                "type": "folder",
+                                "title": "TidierCourse",
+                                "path": "TidierCourse",
+                                "defaultOpened": false
+                            }
+                        ]
                     },
                     {
                         "type": "folder",
@@ -62,10 +69,28 @@
                     },
                     {
                         "type": "folder",
-                        "title": "Meta Docs",
+                        "title": "Dashbords",
                         "defaultOpened": false,
                         "elements": [
+                            {
+                                "type": "folder",
+                                "title": "PlutoDashboards",
+                                "path": "PlutoDashboards",
+                                "defaultOpened": false
+                            }
                         ]
+                    },
+                    {
+                        "type": "folder",
+                        "title": "Web Applications",
+                        "defaultOpened": false,
+                        "elements": []
+                    },
+                    {
+                        "type": "folder",
+                        "title": "Meta Docs",
+                        "defaultOpened": false,
+                        "elements": []
                     }
                 ]
             }
