@@ -7,3 +7,9 @@
 [submodule "CalciumScoring.jl"]
 	path = CalciumScoring.jl
 	url = https://github.com/Dale-Black/CalciumScoring.jl
+[submodule "PlutoDashboards"]
+	path = PlutoDashboards
+	url = https://github.com/Dale-Black/PlutoDashboards
+[submodule "TidierCourse"]
+	path = TidierCourse
+	url = https://github.com/Dale-Black/TidierCourse
