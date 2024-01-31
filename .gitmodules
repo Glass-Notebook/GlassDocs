@@ -7,6 +7,3 @@
 [submodule "CalciumScoring.jl"]
 	path = CalciumScoring.jl
 	url = https://github.com/Dale-Black/CalciumScoring.jl
-[submodule "ComputerVisionTutorials.jl"]
-	path = ComputerVisionTutorials.jl
-	url = https://github.com/Dale-Black/ComputerVisionTutorials.jl
