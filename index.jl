@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.36
+# v0.19.38
 
 #> [frontmatter]
 #> title = "GlassDocs"
@@ -170,7 +170,7 @@ begin
 	        )
 	    )
 	end
-end
+end;
 
 # ╔═╡ 305ef451-9de9-4005-8495-2066052e9be8
 to_html(
@@ -195,9 +195,9 @@ to_html(
 # ╟─0b32fad4-0ec7-4590-952f-ec438ce1900a
 # ╟─546b7906-c112-4225-aa81-e7138ae352cb
 # ╟─d6bd6300-5b14-4ab4-b519-ed59b466adb9
-# ╠═d871cef8-5f6d-4279-8949-616b6ca76396
-# ╠═6ae1c5d0-4021-40ac-9bc0-bb9d0fab9fa4
-# ╠═49fe3920-26ab-4873-8413-3418d5552f7f
-# ╠═8cff59f5-3ee5-4608-a8b7-b5e6c3d4af17
-# ╠═2e47591b-1156-4f07-9934-f7983a801c2c
-# ╠═6c8fc72b-145b-4f1f-9296-2fe8938eaf70
+# ╟─d871cef8-5f6d-4279-8949-616b6ca76396
+# ╟─6ae1c5d0-4021-40ac-9bc0-bb9d0fab9fa4
+# ╟─49fe3920-26ab-4873-8413-3418d5552f7f
+# ╟─8cff59f5-3ee5-4608-a8b7-b5e6c3d4af17
+# ╟─2e47591b-1156-4f07-9934-f7983a801c2c
+# ╟─6c8fc72b-145b-4f1f-9296-2fe8938eaf70
