@@ -90,7 +90,14 @@
                         "type": "folder",
                         "title": "Meta Docs",
                         "defaultOpened": false,
-                        "elements": []
+                        "elements": [
+                            {
+                                "type": "folder",
+                                "title": "ComputerVisionMetrics.jl",
+                                "path": "ComputerVisionMetrics.jl",
+                                "defaultOpened": false
+                            }
+                        ]
                     }
                 ]
             }
