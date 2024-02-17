@@ -93,8 +93,8 @@
                         "elements": [
                             {
                                 "type": "folder",
-                                "title": "ComputerVisionMetrics.jl",
-                                "path": "ComputerVisionMetrics.jl",
+                                "title": "ComputerVisionTutorials.jl",
+                                "path": "ComputerVisionTutorials.jl",
                                 "defaultOpened": false
                             }
                         ]
