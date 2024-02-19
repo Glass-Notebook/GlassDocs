@@ -24,7 +24,9 @@ begin
 	using Pkg; Pkg.activate("."); Pkg.instantiate()
 
 	using HTMLStrings: to_html, head, link, script, divv, h1, img, p, span, a, figure, hr, select, option, label
-	using PlutoUI
+	using PlutoUI, HypertextLiteral
+	import AbstractPlutoDingetjes
+	import AbstractPlutoDingetjes.Bonds
 end
 
 # ╔═╡ ba9e26af-94fc-47e0-9dfe-03fd0468c0c7
@@ -94,14 +96,6 @@ themes = [
 	"sunset",
 ];
 
-# ╔═╡ 2afbaa0e-5ee0-42f4-a036-acda049ad0e5
-md"""
-Choose Theme: $(@bind theme PlutoUI.Select(themes, default = "night"))
-"""
-
-# ╔═╡ 49fe3920-26ab-4873-8413-3418d5552f7f
-data_theme = theme;
-
 # ╔═╡ 2e47591b-1156-4f07-9934-f7983a801c2c
 function index_title_card(title::String, subtitle::String, image_url::String; data_theme::String = "pastel", border_color::String = "primary")
 	return to_html(
@@ -121,14 +115,6 @@ function index_title_card(title::String, subtitle::String, image_url::String; da
 	    )
 	)
 end;
-
-# ╔═╡ e72eb673-ee5e-4e61-9188-0c7381efbdab
-index_title_card(
-	"GlassDocs",
-	"Publish, interactive Pluto.jl notebooks with one click",
-	"https://github.com/Dale-Black/GlassDocs/blob/master/assets/icon.png?raw=true";
-	data_theme = data_theme
-)
 
 # ╔═╡ 6c8fc72b-145b-4f1f-9296-2fe8938eaf70
 begin
@@ -172,6 +158,120 @@ begin
 	end
 end;
 
+# ╔═╡ aac0e8aa-e54d-42d8-a36b-00c282da5664
+# this is a fix for PlutoUI.jl#292
+begin
+	local result = begin
+	"""
+	```julia
+	Select(options::Vector; [default])
+	# or with a custom display value:
+	Select(options::Vector{Pair{Any,String}}; [default::Any])
+	```
+
+	A dropdown menu - the user can choose an element of the `options` vector.
+
+	See [`MultiSelect`](@ref) for a version that allows multiple selected items.
+
+	# Examples
+	```julia
+	@bind veg Select(["potato", "carrot"])
+	```
+	
+	```julia
+	@bind f Select([sin, cos, tan, sqrt])
+	
+	f(0.5)
+	```
+
+	You can also specify a display value by giving pairs `bound_value => display_value`:
+	
+	```julia
+	@bind f Select([cos => "cosine function", sin => "sine function"])
+
+	f(0.5)
+	```
+	"""
+	struct Select
+		options::AbstractVector{Pair}
+		default::Union{Missing, Any}
+	end
+	end
+	
+	Select(options::AbstractVector; default=missing) = Select([o => o for o in options], default)
+	
+	Select(options::AbstractVector{<:Pair}; default=missing) = Select(options, default)
+	
+	function Base.show(io::IO, m::MIME"text/html", select::Select)
+
+		
+		# compat code
+		if !AbstractPlutoDingetjes.is_supported_by_display(io, Bonds.transform_value)
+			compat_element = try
+				OldSelect(select.options, select.default)
+			catch
+				HTML("<span>❌ You need to update Pluto to use this PlutoUI element.</span>")
+			end
+			return show(io, m, compat_element)
+		end
+
+		
+		show(io, m, @htl(
+			"""<select>$(
+		map(enumerate(select.options)) do (i,o)
+				@htl(
+				"<option value='puiselect-$(i)' selected=$(!ismissing(select.default) && o.first == select.default)>$(
+				string(o.second)
+				)</option>")
+			end
+		)</select>"""))
+	end
+
+	Base.get(select::Select) = ismissing(select.default) ? first(select.options).first : select.default
+	Bonds.initial_value(select::Select) = ismissing(select.default) ? first(select.options).first : select.default
+	
+	Bonds.possible_values(select::Select) = ("puiselect-$(i)" for i in 1:length(select.options))
+	
+	function Bonds.transform_value(select::Select, val_from_js)
+		if startswith(val_from_js, "puiselect-")
+			val_num = tryparse(Int64, @view val_from_js[begin+10:end])
+			select.options[val_num].first
+		else
+			# and OldSelect was rendered
+			val_from_js
+		end
+	end
+	
+	function Bonds.validate_value(select::Select, val_from_js)
+		(val_from_js isa String) || return false
+		if startswith(val_from_js, "puiselect-")
+			val_num = tryparse(Int64, @view val_from_js[begin+10:end])
+			val_num isa Integer && val_num ∈ eachindex(select.options)
+		else
+			# and OldSelect was rendered
+			any(key == val_from_js for (key,val) in select.options)
+		end
+	end
+
+	nothing
+end
+
+# ╔═╡ 2afbaa0e-5ee0-42f4-a036-acda049ad0e5
+md"""
+Choose Theme: $(@bind theme Select(themes, default = "night"))
+"""
+
+# ╔═╡ 49fe3920-26ab-4873-8413-3418d5552f7f
+data_theme = theme;
+
+# ╔═╡ e72eb673-ee5e-4e61-9188-0c7381efbdab
+index_title_card(
+	"GlassDocs",
+	"Publish, interactive Pluto.jl notebooks with one click",
+	"https://github.com/Dale-Black/GlassDocs/blob/master/assets/icon.png?raw=true";
+	data_theme = data_theme
+)
+
 # ╔═╡ 305ef451-9de9-4005-8495-2066052e9be8
 to_html(
     divv(:class => "flex flex-wrap justify-center items-start",
@@ -201,3 +301,4 @@ to_html(
 # ╟─8cff59f5-3ee5-4608-a8b7-b5e6c3d4af17
 # ╟─2e47591b-1156-4f07-9934-f7983a801c2c
 # ╟─6c8fc72b-145b-4f1f-9296-2fe8938eaf70
+# ╟─aac0e8aa-e54d-42d8-a36b-00c282da5664
