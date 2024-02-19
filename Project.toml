@@ -1,5 +1,7 @@
 name = "GlassDocs"
 
 [deps]
+AbstractPlutoDingetjes = "6e696c72-6542-2067-7265-42206c756150"
 HTMLStrings = "c47fe496-5789-4377-b1db-55e89f2ee0c6"
+HypertextLiteral = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
 PlutoUI = "7f904dfe-b85e-4ff6-b463-dae2292396a8"
