@@ -1,6 +1,6 @@
 # GlassDocs
 
-[![Glass Notebook](https://img.shields.io/badge/Docs-Glass%20Notebook-aquamarine.svg)](https://glassnotebook.io/r/fPuxqzHi6mmOvzXwVNxuK/index.jl)
+[![Glass Notebook](https://img.shields.io/badge/Docs-Glass%20Notebook-aquamarine.svg)](https://glassnotebook.io/r/g7gi-y9zvTVvRLrmptnbP/index.jl)
 
 Welcome to GlassDocs.jl, the comprehensive docs for the Glass Notebook - a seamless way to publish interactive Pluto.jl notebooks directly from your GitHub repositories.
 
@@ -28,22 +28,11 @@ The following is a series of Pluto notebooks designed to provide comprehensive d
     - Syncing with GitHub
     - Publishing your first notebook
 
-2. **02_basic_operations.jl**
-    - Creating new documents
-    - Editing and saving changes
-    - Structuring notebooks for sidebar generation
-    - Overview of the documentation generation process
-
-3. **03_advanced_usage.jl**
+2. **02_advanced_usage.jl**
     - Combining multiple packages into a single documentation
     - Using git submodules for creating meta documentation
     - Customizing the sidebar
     - Tips for writing effective documentation in Pluto notebooks
-
-4. **04_repository_structure.jl**
-    - Understanding the GlassDocs repository structure
-    - How to organize your documentation for clarity and ease of navigation
-    - Best practices for file and folder naming conventions
 
 ## Structure of the Repository
 
@@ -53,26 +42,24 @@ This section provides an overview of the repository structure, including directo
 
 ```
 /GlassDocs
-├── /docs
-│   ├── /tutorials          # Tutorials using Glass
-│   │   └── tutorial1.jl    # Example tutorial
-│   ├── /examples           # Examples as git submodules
-│   │   ├── /package_docs   # Documentation for packages
-│   │   │   └── submodule1  # Git submodule to package documentation
-│   │   ├── /teaching       # Materials for teaching
-│   │   │   └── submodule2  # Git submodule to teaching material
-│   │   ├── /meta_docs      # Meta documentation combining multiple sources
-│   │   │   └── submodule3  # Git submodule to meta documentation
-│   │   └── /more_examples  # Additional examples
-│   │       └── submodule4  # Git submodule to other examples
-│   └── sidebar.md          # Sidebar markdown for navigation
-├── /src
-│   └── GlassNotebook.jl    # Source code for Glass Notebook
-├── /test
-│   └── runtests.jl         # Test scripts for Glass Notebook
-├── .gitmodules             # Git submodules for external content
-├── Project.toml            # Project dependencies and versioning
-└── README.md               # README for the repository
+├── CalciumScoring.jl            # Git submodule package, containing Glass Notebook package docs
+├── ComputerVisionTutorials.jl   # Git submodule package, containing Glass Notebook meta-docs
+├── DistanceTransforms.jl        # Git submodule package, containing Glass Notebook package docs
+├── Losers.jl                    # Git submodule package, containing Glass Notebook package docs
+├── PlutoDashboards              # Git submodule package, containing Glass Notebook package docs
+├── TidierCourse                 # Git submodule package, containing Glass Notebook package docs
+├── /assets                      # Images and other static assets for the documentation
+├── .gitignore                   # Basic .gitignore file
+├── .gitmodules                  # Git submodule file
+├── .glassignore                 # File that tells Glass Notebook which pluto notebooks to ignore
+├── 01_getting_started.jl        # How to: link to GitHub, export basic notebooks, etc.
+├── 02_advanced_usage.jl         # Advanced tutorials: simple docs, meta-docs, nested meta docs, etc.
+├── Manifest.toml
+├── Project.toml
+├── README.md
+├── index.jl                     # Homepage notebook for GlassDocs
+├── structure.json               # JSON file to customize the sidebar exported in Glass Notebook
+└── unseen_notebook.jl           # Sample notebook that gets ignored by glass via `.glassignore`
 ```
 
 ## Examples as Git Submodules
