@@ -13,6 +13,3 @@
 [submodule "TidierCourse"]
 	path = TidierCourse
 	url = https://github.com/Dale-Black/TidierCourse
-[submodule "ComputerVisionTutorials.jl"]
-	path = ComputerVisionTutorials.jl
-	url = https://github.com/Dale-Black/ComputerVisionTutorials.jl
