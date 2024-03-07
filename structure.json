@@ -88,7 +88,7 @@
                     },
                     {
                         "type": "folder",
-                        "title": "Meta Docs",
+                        "title": "Nested Projects",
                         "defaultOpened": false,
                         "elements": []
                     }

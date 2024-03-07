@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.38
+# v0.19.40
 
 #> [frontmatter]
 #> title = "GlassDocs"
@@ -18,31 +18,48 @@ macro bind(def, element)
     end
 end
 
-# ╔═╡ d871cef8-5f6d-4279-8949-616b6ca76396
+# ╔═╡ a15c60cf-df35-43ef-99ba-e3c70fea793b
 # ╠═╡ show_logs = false
 begin
 	using Pkg; Pkg.activate("."); Pkg.instantiate()
 
-	using HTMLStrings: to_html, head, link, script, divv, h1, img, p, span, a, figure, hr, select, option, label
+	using HTMLStrings: to_html, head, link, script, divv, h1, img, p, span, a, figure, hr, select, option, label, h2, li, ul
 	using PlutoUI, HypertextLiteral
 	import AbstractPlutoDingetjes
 	import AbstractPlutoDingetjes.Bonds
 end
 
-# ╔═╡ ba9e26af-94fc-47e0-9dfe-03fd0468c0c7
+# ╔═╡ f6a952c2-9f71-44a2-a03b-8ac536197b6c
 md"""
 ## Tutorials
+
+Get started with Glass Notebook by following these step-by-step tutorials. Learn the basics of setting up and publishing your first notebook, and then dive into more advanced features and customization options.
 """
 
-# ╔═╡ 5a5af88e-b35d-4660-90e9-60a864ae77bb
+# ╔═╡ 08de7324-8ef4-44d0-bbfa-4beff681fcb0
 md"""
-## Real-World Examples
-Take a look at some examples of Glass Notebook being used for documentation, app development, teaching, and meta-packages. 
+## Examples
+Take a look at some examples of Glass Notebook being used for documentation, tutorials, teaching, dashboards, web applications, and meta-packages. 
 
-If you are ready to get started, take a look at the templates below this section.
+If you are ready to get started, take a look at the tutorials above.
 """
 
-# ╔═╡ 546b7906-c112-4225-aa81-e7138ae352cb
+# ╔═╡ 0e56e7b7-9138-49b4-8870-0d7e201ed07a
+to_html(
+	divv(
+		h2("Contact Us"),
+		ul(:class => "menu bg-base-200 w-full rounded-box space-y-2",
+			li(
+				a(:class =>"", :href => "https://julialang.zulipchat.com/#narrow/stream/428178-glassnotebook", "Community Zulip Forum")
+			),
+			li(
+				a(:class =>"", :href => "mailto:support@glassnotebook.io", "Email Contact Support")
+			)
+		)
+	)
+)
+
+# ╔═╡ 5a0a7f42-dc8a-47fb-ad6b-bd1ba79c95f7
 to_html(
 	divv(
 		p(:class => "h-20"),
@@ -50,17 +67,17 @@ to_html(
 	)
 )
 
-# ╔═╡ d6bd6300-5b14-4ab4-b519-ed59b466adb9
+# ╔═╡ 3069374b-197e-498d-ad04-6054d9de0d11
 md"""
 #### Appendix
 
-Note that the cells used to create this homepage are hidden below. Go to GitHub to view the cells, or even better, look at the [tempates](https://glassnotebook.io/) folder to start creating your own homepage.
+Note that the cells used to create this homepage are hidden below. Go to GitHub to view the cells, or even better, look at the examples to start creating your own homepage.
 """
 
-# ╔═╡ 6ae1c5d0-4021-40ac-9bc0-bb9d0fab9fa4
+# ╔═╡ efc47ff7-8250-40d0-8c58-38b5380dec8c
 TableOfContents()
 
-# ╔═╡ 8cff59f5-3ee5-4608-a8b7-b5e6c3d4af17
+# ╔═╡ ce2ef882-fc8d-4259-9a37-31170db9c9dd
 themes = [
 	"light",
 	"dark",
@@ -91,12 +108,9 @@ themes = [
 	"night",
 	"coffee",
 	"winter",
-	"dim",
-	"nord",
-	"sunset",
 ];
 
-# ╔═╡ 2e47591b-1156-4f07-9934-f7983a801c2c
+# ╔═╡ 978efdc4-d597-4b07-8601-459474440cc2
 function index_title_card(title::String, subtitle::String, image_url::String; data_theme::String = "pastel", border_color::String = "primary")
 	return to_html(
 	    divv(
@@ -107,7 +121,7 @@ function index_title_card(title::String, subtitle::String, image_url::String; da
 			divv(:data_theme => "$data_theme", :class => "card card-bordered flex justify-center items-center border-$border_color text-center w-full dark:text-[#e6e6e6]",
 				divv(:class => "card-body flex flex-col justify-center items-center",
 					img(:src => "$image_url", :class => "h-24 w-24 md:h-40 md:w-40 rounded-md", :alt => "$title Logo"),
-					divv(:class => "text-5xl font-bold bg-gradient-to-r from-accent to-primary inline-block text-transparent bg-clip-text py-10", "$title"),
+					divv(:class => "text-3xl md:text-5xl font-bold bg-gradient-to-r from-accent to-primary inline-block text-transparent bg-clip-text py-10", "$title"),
 					p(:class => "card-text text-md font-serif", "$subtitle"
 					)
 				)
@@ -116,7 +130,7 @@ function index_title_card(title::String, subtitle::String, image_url::String; da
 	)
 end;
 
-# ╔═╡ 6c8fc72b-145b-4f1f-9296-2fe8938eaf70
+# ╔═╡ 9f7fff06-92f2-4837-9eab-59150513b2e6
 begin
 	struct Article
 		title::String
@@ -126,32 +140,26 @@ begin
 
 	article_list_tutorials = Article[
 		Article("Getting Started", "01_getting_started.jl", "https://img.freepik.com/free-vector/hand-drawn-starting-line-business-illustration_23-2149540609.jpg"),
-		Article("Advanced Usage", "02_advanced.jl", "https://img.freepik.com/free-vector/trio-set-realistic-technology-collection-with-circels-squares-other-things-centre-blue_1284-49186.jpg"),
-	]
-
-	article_list_templates = Article[
-		Article("Plain Repository", "templates/plain_repository/index.jl", "https://img.freepik.com/free-vector/notebook-mockup_1017-6288.jpg"),
-		Article("Package Documentation", "templates/ExamplePackage/index.jl", "https://img.freepik.com/free-vector/online-document-concept-illustration_114360-5453.jpg"),
-		Article("Teaching (TODO)", "", "https://img.freepik.com/free-vector/teacher-standing-near-blackboard-holding-stick-isolated-flat-vector-illustration-cartoon-woman-character-near-chalkboard-pointing-alphabet_74855-8600.jpg"),
-		Article("Meta Package (TODO)", "", "https://img.freepik.com/free-vector/four-blue-puzzle-pieces_78370-1141.jpg"),
+		Article("Advanced Usage", "02_advanced_usage.jl", "https://img.freepik.com/free-vector/trio-set-realistic-technology-collection-with-circels-squares-other-things-centre-blue_1284-49186.jpg"),
 	]
 
 	article_list_examples = Article[
-		Article("CalciumScoring.jl Docs", "https://glassnotebook.io/r/zn0Xr-A1cYegYHSDJzSyO/index.jl", "https://img.freepik.com/free-vector/ct-scan-concept-illustration_114360-7073.jpg"),
-		Article("Brain Dancer GUI", "https://glassnotebook.io/r/Wx63p40sJffuoB_ZkFy_D/index.jl", "https://alascience.com/wp-content/uploads/2020/07/Logo-registered-trademark.jpg"),
-		Article("DistanceTransforms.jl Docs", "https://glassnotebook.io/r/DxnIPJnIqpEqiQnJgqiBP/index.jl", "https://img.freepik.com/free-vector/global-communication-background-business-network-vector-design_53876-151122.jpg"),
-		Article("Computational Thinking (in Glass Notebook) (TODO)", "https://computationalthinking.mit.edu/Fall23/", "https://user-images.githubusercontent.com/6933510/136196552-ce16c06f-bd12-427f-80e5-aedb1fbc734a.png")
+		Article("Losers.jl Docs", "Losers.jl/index.jl", "https://img.freepik.com/free-vector/low-self-esteem-woman-looking-into-mirror_23-2148714425.jpg?size=626&ext=jpg&ga=GA1.1.1427368820.1695503713&semt=ais"),
+		Article("CalciumScoring.jl Docs", "CalciumScoring.jl/index.jl", "https://img.freepik.com/free-vector/ct-scan-concept-illustration_114360-7073.jpg"),
+		Article("Tidier Course", "TidierCourse/index.jl", "https://t3.ftcdn.net/jpg/02/82/53/14/360_F_282531462_K3Mek2df4ExqbE6ylp2uYanKOfpmn8ay.jpg"),
+		Article("Pluto Dashboards", "PlutoDashboards/dashboard.jl", "https://img.freepik.com/free-vector/site-stats-concept-illustration_114360-1434.jpg"),
+		Article("DistanceTransforms.jl Docs", "DistanceTransforms.jl/index.jl", "https://img.freepik.com/free-vector/global-communication-background-business-network-vector-design_53876-151122.jpg")
 	]
 
 	function article_card(article::Article, color::String; data_theme = "pastel")
-	    a(:href => article.path, :class => "w-1/2 p-2",
+	    a(:href => article.path, :class => "w-full md:w-1/2 p-2",
 			divv(:data_theme => "$data_theme", :class => "card card-bordered border-$color text-center dark:text-[#e6e6e6]",
-				divv(:class => "card-body justify-center items-center h-40",
-					p(:class => "card-title", article.title),
-					p("Click to open the notebook")
+				divv(:class => "card-body justify-center items-center h-32 md:h-40",
+					p(:class => "text-lg md:text-2xl", article.title),
+					p(:class => "text-sm md:text-base", "Click to open the notebook")
 				),
 				figure(
-					img(:class => "w-full h-48", :src => article.image_url, :alt => article.title)
+					img(:class => "w-full h-40 md:h-48 object-cover", :src => article.image_url, :alt => article.title)
 				)
 	        )
 	    )
@@ -256,49 +264,50 @@ begin
 	nothing
 end
 
-# ╔═╡ 2afbaa0e-5ee0-42f4-a036-acda049ad0e5
+# ╔═╡ 9511c3ab-6132-46de-a836-687c46ce36d9
 md"""
 Choose Theme: $(@bind theme Select(themes, default = "night"))
 """
 
-# ╔═╡ 49fe3920-26ab-4873-8413-3418d5552f7f
+# ╔═╡ 12e21e58-ceb1-4ad9-b21f-f817eca2fa3b
 data_theme = theme;
 
-# ╔═╡ e72eb673-ee5e-4e61-9188-0c7381efbdab
+# ╔═╡ 090624ce-384c-4d6e-bd2a-262d5e0f6bc2
 index_title_card(
 	"GlassDocs",
-	"Publish, interactive Pluto.jl notebooks with one click",
+	"Publish interactive Pluto.jl notebooks with one click",
 	"https://github.com/Dale-Black/GlassDocs/blob/master/assets/icon.png?raw=true";
 	data_theme = data_theme
 )
 
-# ╔═╡ 305ef451-9de9-4005-8495-2066052e9be8
+# ╔═╡ 628e9ccc-7d52-48ef-a1f2-dd5092079422
 to_html(
-    divv(:class => "flex flex-wrap justify-center items-start",
-        [article_card(article, "secondary"; data_theme = data_theme) for article in article_list_tutorials]...
+    divv(:class => "flex flex-col md:flex-row flex-wrap justify-center items-start",
+        [article_card(article, "accent"; data_theme = data_theme) for article in article_list_tutorials]...
     )
 )
 
-# ╔═╡ 0b32fad4-0ec7-4590-952f-ec438ce1900a
+# ╔═╡ 197b4d59-d97d-4ea2-8cc0-5cd286b9d59d
 to_html(
-    divv(:class => "flex flex-wrap justify-center items-start",
-        [article_card(article, "accent"; data_theme = data_theme) for article in article_list_examples]...
+    divv(:class => "flex flex-col md:flex-row flex-wrap justify-center items-start",
+        [article_card(article, "secondary"; data_theme = data_theme) for article in article_list_examples]...
     )
 )
 
 # ╔═╡ Cell order:
-# ╟─2afbaa0e-5ee0-42f4-a036-acda049ad0e5
-# ╟─e72eb673-ee5e-4e61-9188-0c7381efbdab
-# ╟─ba9e26af-94fc-47e0-9dfe-03fd0468c0c7
-# ╟─305ef451-9de9-4005-8495-2066052e9be8
-# ╟─5a5af88e-b35d-4660-90e9-60a864ae77bb
-# ╟─0b32fad4-0ec7-4590-952f-ec438ce1900a
-# ╟─546b7906-c112-4225-aa81-e7138ae352cb
-# ╟─d6bd6300-5b14-4ab4-b519-ed59b466adb9
-# ╟─d871cef8-5f6d-4279-8949-616b6ca76396
-# ╟─6ae1c5d0-4021-40ac-9bc0-bb9d0fab9fa4
-# ╟─49fe3920-26ab-4873-8413-3418d5552f7f
-# ╟─8cff59f5-3ee5-4608-a8b7-b5e6c3d4af17
-# ╟─2e47591b-1156-4f07-9934-f7983a801c2c
-# ╟─6c8fc72b-145b-4f1f-9296-2fe8938eaf70
+# ╟─9511c3ab-6132-46de-a836-687c46ce36d9
+# ╟─090624ce-384c-4d6e-bd2a-262d5e0f6bc2
+# ╟─f6a952c2-9f71-44a2-a03b-8ac536197b6c
+# ╟─628e9ccc-7d52-48ef-a1f2-dd5092079422
+# ╟─08de7324-8ef4-44d0-bbfa-4beff681fcb0
+# ╟─197b4d59-d97d-4ea2-8cc0-5cd286b9d59d
+# ╟─0e56e7b7-9138-49b4-8870-0d7e201ed07a
+# ╟─5a0a7f42-dc8a-47fb-ad6b-bd1ba79c95f7
+# ╟─3069374b-197e-498d-ad04-6054d9de0d11
+# ╟─a15c60cf-df35-43ef-99ba-e3c70fea793b
+# ╟─efc47ff7-8250-40d0-8c58-38b5380dec8c
+# ╟─12e21e58-ceb1-4ad9-b21f-f817eca2fa3b
+# ╟─ce2ef882-fc8d-4259-9a37-31170db9c9dd
+# ╟─978efdc4-d597-4b07-8601-459474440cc2
+# ╟─9f7fff06-92f2-4837-9eab-59150513b2e6
 # ╟─aac0e8aa-e54d-42d8-a36b-00c282da5664
