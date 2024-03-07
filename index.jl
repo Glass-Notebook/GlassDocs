@@ -53,7 +53,7 @@ to_html(
 				a(:class =>"", :href => "https://julialang.zulipchat.com/#narrow/stream/428178-glassnotebook", "Community Zulip Forum")
 			),
 			li(
-				a(:class =>"", :href => "mailto:support@glassnotebook.io", "Email Contact Support")
+				a(:class =>"", :href => "mailto:support@glassnotebook.io", "Email: support@glassnotebook.io")
 			)
 		)
 	)

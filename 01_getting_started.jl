@@ -15,9 +15,6 @@ using Pkg; Pkg.activate("."); Pkg.instantiate()
 # ╔═╡ f1f67e1f-9608-4465-a771-ef742ee7e648
 using PlutoUI
 
-# ╔═╡ 7d73a5fc-b9e9-4d04-90ec-e57f19eddf38
-TableOfContents()
-
 # ╔═╡ b27b33dc-fb83-4cfb-b57c-8110cba62f60
 md"""
 # Getting Started
@@ -91,11 +88,20 @@ Congratulations! You're now ready to start using Glass Notebook to create and sh
 - [Contact Support](mailto:support@glassnotebook.io): If you need further assistance, don't hesitate to reach out to our support team
 """
 
+# ╔═╡ 8ab48cd9-73ab-416e-892c-d6c6b7858036
+md"""
+#### Appendix
+"""
+
+# ╔═╡ 7d73a5fc-b9e9-4d04-90ec-e57f19eddf38
+TableOfContents()
+
 # ╔═╡ Cell order:
-# ╠═e7d4da2c-a413-41a4-b72b-b9f5d414a177
-# ╠═f1f67e1f-9608-4465-a771-ef742ee7e648
-# ╠═7d73a5fc-b9e9-4d04-90ec-e57f19eddf38
 # ╟─b27b33dc-fb83-4cfb-b57c-8110cba62f60
 # ╟─687c7c2f-4006-4103-92bf-df2333917bd4
 # ╟─d3039dfe-53f3-45c6-bc0f-9cbb42290cbd
 # ╟─0c260417-4386-483d-bcd4-8751126e38dd
+# ╟─8ab48cd9-73ab-416e-892c-d6c6b7858036
+# ╠═e7d4da2c-a413-41a4-b72b-b9f5d414a177
+# ╠═f1f67e1f-9608-4465-a771-ef742ee7e648
+# ╠═7d73a5fc-b9e9-4d04-90ec-e57f19eddf38

@@ -16,9 +16,6 @@ using Pkg; Pkg.activate("."); Pkg.instantiate()
 # ╠═╡ show_logs = false
 using PlutoUI
 
-# ╔═╡ f4914413-531e-408f-85bc-87448e9c2987
-TableOfContents()
-
 # ╔═╡ b6c2921f-46a3-4713-8cb3-551919fd4d3a
 html"""
 <h1>Advanced Usage</h1>
@@ -252,10 +249,19 @@ You can use links to:
 Glass Notebook will handle the proper resolution of these links, ensuring that users can easily navigate between notebooks and access external resources.
 """
 
+# ╔═╡ 818de8d2-352a-4e31-bd26-a5fa1f99b825
+md"""
+#### Appendix
+"""
+
+# ╔═╡ f4914413-531e-408f-85bc-87448e9c2987
+TableOfContents()
+
 # ╔═╡ Cell order:
-# ╠═46581809-1673-45c7-8cc1-40bf12b2a8d7
-# ╠═463236e3-f8e0-4748-bbfc-4a4331c61ea6
-# ╠═f4914413-531e-408f-85bc-87448e9c2987
 # ╟─b6c2921f-46a3-4713-8cb3-551919fd4d3a
 # ╟─909ea835-6307-409a-8a00-544c6d9619be
 # ╟─d3a7a334-0f96-491e-9512-ea1d3b6cca21
+# ╟─818de8d2-352a-4e31-bd26-a5fa1f99b825
+# ╠═46581809-1673-45c7-8cc1-40bf12b2a8d7
+# ╠═463236e3-f8e0-4748-bbfc-4a4331c61ea6
+# ╠═f4914413-531e-408f-85bc-87448e9c2987
