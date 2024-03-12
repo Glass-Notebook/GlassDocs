@@ -247,6 +247,9 @@ You can use links to:
 - Link to external websites or resources
 
 Glass Notebook will handle the proper resolution of these links, ensuring that users can easily navigate between notebooks and access external resources.
+
+## API Documentation
+By writing our package doc strings in a specific way, you can take advantage of the wonderful `PlutoUI.jl` package and Glass Notebook in order to create an automatic API notebook for your package documentation, like in [this example](https://github.com/Dale-Black/Losers.jl/blob/master/docs/99_api.jl) which gets exported [like so](Losers.jl/docs/99_api.jl).
 """
 
 # ╔═╡ 818de8d2-352a-4e31-bd26-a5fa1f99b825
