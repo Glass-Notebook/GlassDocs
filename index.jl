@@ -29,6 +29,14 @@ begin
 	import AbstractPlutoDingetjes.Bonds
 end
 
+# ╔═╡ 9511c3ab-6132-46de-a836-687c46ce36d9
+# md"""
+# Choose Theme: $(@bind theme Select(themes, default = "night"))
+# """
+
+# ╔═╡ 418243fb-a87b-443e-bdd4-9d35ebb6c71d
+theme = "night";
+
 # ╔═╡ f6a952c2-9f71-44a2-a03b-8ac536197b6c
 md"""
 ## Tutorials
@@ -76,6 +84,9 @@ Note that the cells used to create this homepage are hidden below. Go to GitHub 
 
 # ╔═╡ efc47ff7-8250-40d0-8c58-38b5380dec8c
 TableOfContents()
+
+# ╔═╡ 12e21e58-ceb1-4ad9-b21f-f817eca2fa3b
+data_theme = theme;
 
 # ╔═╡ ce2ef882-fc8d-4259-9a37-31170db9c9dd
 themes = [
@@ -130,6 +141,14 @@ function index_title_card(title::String, subtitle::String, image_url::String; da
 	)
 end;
 
+# ╔═╡ 090624ce-384c-4d6e-bd2a-262d5e0f6bc2
+index_title_card(
+	"GlassDocs",
+	"Publish interactive Pluto.jl notebooks with one click",
+	"https://github.com/Dale-Black/GlassDocs/blob/master/assets/icon.png?raw=true";
+	data_theme = data_theme
+)
+
 # ╔═╡ 9f7fff06-92f2-4837-9eab-59150513b2e6
 begin
 	struct Article
@@ -165,6 +184,20 @@ begin
 	    )
 	end
 end;
+
+# ╔═╡ 628e9ccc-7d52-48ef-a1f2-dd5092079422
+to_html(
+    divv(:class => "flex flex-col md:flex-row flex-wrap justify-center items-start",
+        [article_card(article, "accent"; data_theme = data_theme) for article in article_list_tutorials]...
+    )
+)
+
+# ╔═╡ 197b4d59-d97d-4ea2-8cc0-5cd286b9d59d
+to_html(
+    divv(:class => "flex flex-col md:flex-row flex-wrap justify-center items-start",
+        [article_card(article, "secondary"; data_theme = data_theme) for article in article_list_examples]...
+    )
+)
 
 # ╔═╡ aac0e8aa-e54d-42d8-a36b-00c282da5664
 # this is a fix for PlutoUI.jl#292
@@ -264,38 +297,7 @@ begin
 	nothing
 end
 
-# ╔═╡ 9511c3ab-6132-46de-a836-687c46ce36d9
-md"""
-Choose Theme: $(@bind theme Select(themes, default = "night"))
-"""
-
-# ╔═╡ 12e21e58-ceb1-4ad9-b21f-f817eca2fa3b
-data_theme = theme;
-
-# ╔═╡ 090624ce-384c-4d6e-bd2a-262d5e0f6bc2
-index_title_card(
-	"GlassDocs",
-	"Publish interactive Pluto.jl notebooks with one click",
-	"https://github.com/Dale-Black/GlassDocs/blob/master/assets/icon.png?raw=true";
-	data_theme = data_theme
-)
-
-# ╔═╡ 628e9ccc-7d52-48ef-a1f2-dd5092079422
-to_html(
-    divv(:class => "flex flex-col md:flex-row flex-wrap justify-center items-start",
-        [article_card(article, "accent"; data_theme = data_theme) for article in article_list_tutorials]...
-    )
-)
-
-# ╔═╡ 197b4d59-d97d-4ea2-8cc0-5cd286b9d59d
-to_html(
-    divv(:class => "flex flex-col md:flex-row flex-wrap justify-center items-start",
-        [article_card(article, "secondary"; data_theme = data_theme) for article in article_list_examples]...
-    )
-)
-
 # ╔═╡ Cell order:
-# ╟─9511c3ab-6132-46de-a836-687c46ce36d9
 # ╟─090624ce-384c-4d6e-bd2a-262d5e0f6bc2
 # ╟─f6a952c2-9f71-44a2-a03b-8ac536197b6c
 # ╟─628e9ccc-7d52-48ef-a1f2-dd5092079422
@@ -304,6 +306,8 @@ to_html(
 # ╟─0e56e7b7-9138-49b4-8870-0d7e201ed07a
 # ╟─5a0a7f42-dc8a-47fb-ad6b-bd1ba79c95f7
 # ╟─3069374b-197e-498d-ad04-6054d9de0d11
+# ╟─9511c3ab-6132-46de-a836-687c46ce36d9
+# ╟─418243fb-a87b-443e-bdd4-9d35ebb6c71d
 # ╟─a15c60cf-df35-43ef-99ba-e3c70fea793b
 # ╟─efc47ff7-8250-40d0-8c58-38b5380dec8c
 # ╟─12e21e58-ceb1-4ad9-b21f-f817eca2fa3b
