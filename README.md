@@ -72,10 +72,7 @@ This repository includes several examples as git submodules to demonstrate how G
 - **Meta Docs**: Comprehensive documentation projects that include several of the above categories.
 
 ## Contact
-
-Your Name – [@your_twitter](https://twitter.com/your_twitter) - email@example.com
-
-Project Link: [https://github.com/your_username/GlassDocs.jl](https://github.com/your_username/GlassDocs.jl)
+Join us on the [Julia Zulip](https://julialang.zulipchat.com/#narrow/stream/428178-glassnotebook)
 
 ## Acknowledgements
 
