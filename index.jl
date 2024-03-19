@@ -56,7 +56,7 @@ If you are ready to get started, take a look at the tutorials above.
 to_html(
 	divv(
 		h2("Contact Us"),
-		ul(:class => "menu bg-base-200 w-full rounded-box space-y-2",
+		ul(:class => "menu bg-base-100 text-slate-100 w-full rounded-box space-y-2",
 			li(
 				a(:class =>"", :href => "https://julialang.zulipchat.com/#narrow/stream/428178-glassnotebook", "Community Zulip Forum")
 			),
