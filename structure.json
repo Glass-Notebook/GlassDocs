@@ -10,7 +10,7 @@
             {
                 "type": "folder",
                 "title": "Tutorials",
-                "defaultOpened": false,
+                "defaultOpened": true,
                 "elements": [
                     {
                         "type": "notebook",

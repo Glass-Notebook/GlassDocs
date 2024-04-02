@@ -1,10 +1,6 @@
 ### A Pluto.jl notebook ###
 # v0.19.40
 
-#> [frontmatter]
-#> title = "GlassDocs"
-#> sidebar = "false"
-
 using Markdown
 using InteractiveUtils
 
@@ -18,300 +14,512 @@ macro bind(def, element)
     end
 end
 
-# ╔═╡ a15c60cf-df35-43ef-99ba-e3c70fea793b
+# ╔═╡ 9ad2c090-bc90-44e3-975c-658d53c36627
 # ╠═╡ show_logs = false
 begin
 	using Pkg; Pkg.activate("."); Pkg.instantiate()
 
-	using HTMLStrings: to_html, head, link, script, divv, h1, img, p, span, a, figure, hr, select, option, label, h2, li, ul
-	using PlutoUI, HypertextLiteral
-	import AbstractPlutoDingetjes
-	import AbstractPlutoDingetjes.Bonds
+	using HTMLStrings
+	using PlutoUI
 end
 
-# ╔═╡ 9511c3ab-6132-46de-a836-687c46ce36d9
-# md"""
-# Choose Theme: $(@bind theme Select(themes, default = "night"))
-# """
+# ╔═╡ 295d0378-ea73-4f2d-8de2-bb5bf7cc73eb
+begin
+	using PlutoUI: Slider
+	using CairoMakie: scatterlines!, Figure, Axis
+end
 
-# ╔═╡ 418243fb-a87b-443e-bdd4-9d35ebb6c71d
-theme = "night";
+# ╔═╡ fd2ea21c-e343-4955-a6ba-84a644b39ba3
+begin
+	using CairoMakie
+	using RDatasets
+end
 
-# ╔═╡ f6a952c2-9f71-44a2-a03b-8ac536197b6c
-md"""
-## Tutorials
-
-Get started with Glass Notebook by following these step-by-step tutorials. Learn the basics of setting up and publishing your first notebook, and then dive into more advanced features and customization options.
-"""
-
-# ╔═╡ 08de7324-8ef4-44d0-bbfa-4beff681fcb0
-md"""
-## Examples
-Take a look at some examples of Glass Notebook being used for documentation, tutorials, teaching, dashboards, web applications, and meta-packages. 
-
-If you are ready to get started, take a look at the tutorials above.
-"""
-
-# ╔═╡ 0e56e7b7-9138-49b4-8870-0d7e201ed07a
+# ╔═╡ 1da93604-7a6b-4eac-b8a0-9405c62eae58
 to_html(
 	divv(
-		h2("Contact Us"),
-		ul(:class => "menu bg-base-100 text-slate-100 w-full rounded-box space-y-2",
-			li(
-				a(:class =>"", :href => "https://julialang.zulipchat.com/#narrow/stream/428178-glassnotebook", "Community Zulip Forum")
+		h1("Glass Notebook", :style => "border-bottom: none; margin-bottom: 0;"),
+		h4("Empowering Developers to Create and Share Interactive Notebooks", :style => "margin-top: 0; margin-bottom: 40px; padding-bottom: 10px; border-bottom: 1px solid #ccc;"),
+		divv(
+			p("Discover how Glass Notebook can revolutionize the way you create, share, and collaborate on interactive notebooks, documentation, and data-driven applications.", :style => "margin-bottom: 40px;"),
+			divv(:style => "display: flex; justify-content: space-around; flex-wrap: wrap; margin-bottom: 60px;",
+				divv(:style => "width: 100%; max-width: 300px; text-align: center; margin-bottom: 40px;",
+					img(:src => "https://img.icons8.com/dusk/64/000000/code-file.png", :alt => "Seamless Integration with Pluto.jl", :style => "margin-bottom: 20px;"),
+					p("Seamlessly integrate with Pluto.jl to create powerful, interactive notebooks")
+				),
+				divv(:style => "width: 100%; max-width: 300px; text-align: center; margin-bottom: 40px;",
+					img(:src => "https://img.icons8.com/small/64/000000/github.png", :alt => "GitHub Integration and Version Control", :style => "margin-bottom: 20px;"),
+					p("Built-in GitHub integration for easy version control and collaboration")
+				),
+				divv(:style => "width: 100%; max-width: 300px; text-align: center;",
+					img(:src => "https://img.icons8.com/dusk/64/000000/cheap-2.png", :alt => "Generous Free Tier and Affordable Pricing", :style => "margin-bottom: 20px;"),
+					p("Take advantage of our generous free tier and reasonably priced paid plans")
+				)
 			),
-			li(
-				a(:class =>"", :href => "mailto:support@glassnotebook.io", "Email: support@glassnotebook.io")
-			)
+			p("Continue reading to learn more about how Glass Notebook can help you create engaging, interactive content and share your work with the world."),
+			style("""
+			ul {
+				list-style-type: none;
+				padding: 0;
+			}
+			li {
+				margin-bottom: 10px;
+			}
+			img {
+				display: block;
+				margin: 0 auto;
+			}
+			p {
+				margin-top: 10px;
+			}
+			@media screen and (min-width: 768px) {
+				.benefit {
+					width: 30%;
+					margin-bottom: 0;
+				}
+			}
+			""")
 		)
 	)
 )
 
-# ╔═╡ 5a0a7f42-dc8a-47fb-ad6b-bd1ba79c95f7
-to_html(
-	divv(
-		p(:class => "h-20"),
-		hr()
-	)
-)
-
-# ╔═╡ 3069374b-197e-498d-ad04-6054d9de0d11
+# ╔═╡ b14bcfc9-59ee-4ad7-9da4-cc527191c964
 md"""
-#### Appendix
-
-Note that the cells used to create this homepage are hidden below. Go to GitHub to view the cells, or even better, look at the examples to start creating your own homepage.
+!!! success "Built with Glass Notebook"
+	This notebook is a living example of the power and versatility of Glass Notebook. Every interactive element, visualization, and piece of content you see here was created and published using Glass Notebook, demonstrating its ability to create compelling, interactive documentation seamlessly.
 """
 
-# ╔═╡ efc47ff7-8250-40d0-8c58-38b5380dec8c
-TableOfContents()
+# ╔═╡ e0d8cde6-a2b3-4e1c-b69e-4be3a7ab1162
+md"""
+!!! success ""
+    ### Interactive Notebook Example
+	Experience the interactivity of Glass Notebook firsthand with this interactive plot. Adjust the amplitude slider to see how the plot updates in real-time, just like it would in your own Glass Notebook.
+"""
 
-# ╔═╡ 12e21e58-ceb1-4ad9-b21f-f817eca2fa3b
-data_theme = theme;
-
-# ╔═╡ ce2ef882-fc8d-4259-9a37-31170db9c9dd
-themes = [
-	"light",
-	"dark",
-	"cupcake",
-	"bumblebee",
-	"emerald",
-	"corporate",
-	"synthwave",
-	"retro",
-	"cyberpunk",
-	"valentine",
-	"halloween",
-	"garden",
-	"forest",
-	"aqua",
-	"lofi",
-	"pastel",
-	"fantasy",
-	"wireframe",
-	"black",
-	"luxury",
-	"dracula",
-	"cmyk",
-	"autumn",
-	"business",
-	"acid",
-	"lemonade",
-	"night",
-	"coffee",
-	"winter",
-];
-
-# ╔═╡ 978efdc4-d597-4b07-8601-459474440cc2
-function index_title_card(title::String, subtitle::String, image_url::String; data_theme::String = "pastel", border_color::String = "primary")
-	return to_html(
-	    divv(
-	        head(
-				link(:href => "https://cdn.jsdelivr.net/npm/daisyui@3.7.4/dist/full.css", :rel => "stylesheet", :type => "text/css"),
-	            script(:src => "https://cdn.tailwindcss.com")
-	        ),
-			divv(:data_theme => "$data_theme", :class => "card card-bordered flex justify-center items-center border-$border_color text-center w-full dark:text-[#e6e6e6]",
-				divv(:class => "card-body flex flex-col justify-center items-center",
-					img(:src => "$image_url", :class => "h-24 w-24 md:h-40 md:w-40 rounded-md", :alt => "$title Logo"),
-					divv(:class => "text-3xl md:text-5xl font-bold bg-gradient-to-r from-accent to-primary inline-block text-transparent bg-clip-text py-10", "$title"),
-					p(:class => "card-text text-md font-serif", "$subtitle"
-					)
-				)
-			)
-	    )
-	)
-end;
-
-# ╔═╡ 090624ce-384c-4d6e-bd2a-262d5e0f6bc2
-index_title_card(
-	"GlassDocs",
-	"Publish interactive Pluto.jl notebooks with one click",
-	"https://github.com/Dale-Black/GlassDocs/blob/master/assets/icon.png?raw=true";
-	data_theme = data_theme
-)
-
-# ╔═╡ 9f7fff06-92f2-4837-9eab-59150513b2e6
+# ╔═╡ 4a014675-bc4a-4972-8250-625b1f9276fa
 begin
-	struct Article
-		title::String
-		path::String
-		image_url::String
-	end
-
-	article_list_tutorials = Article[
-		Article("Getting Started", "01_getting_started.jl", "https://img.freepik.com/free-vector/hand-drawn-starting-line-business-illustration_23-2149540609.jpg"),
-		Article("Advanced Usage", "02_advanced_usage.jl", "https://img.freepik.com/free-vector/trio-set-realistic-technology-collection-with-circels-squares-other-things-centre-blue_1284-49186.jpg"),
-	]
-
-	article_list_examples = Article[
-		Article("Losers.jl Docs", "Losers.jl/index.jl", "https://img.freepik.com/free-vector/low-self-esteem-woman-looking-into-mirror_23-2148714425.jpg?size=626&ext=jpg&ga=GA1.1.1427368820.1695503713&semt=ais"),
-		Article("CalciumScoring.jl Docs", "CalciumScoring.jl/index.jl", "https://img.freepik.com/free-vector/ct-scan-concept-illustration_114360-7073.jpg"),
-		Article("Tidier Course", "TidierCourse/index.jl", "https://t3.ftcdn.net/jpg/02/82/53/14/360_F_282531462_K3Mek2df4ExqbE6ylp2uYanKOfpmn8ay.jpg"),
-		Article("Pluto Dashboards", "PlutoDashboards/dashboard.jl", "https://img.freepik.com/free-vector/site-stats-concept-illustration_114360-1434.jpg"),
-		Article("DistanceTransforms.jl Docs", "DistanceTransforms.jl/index.jl", "https://img.freepik.com/free-vector/global-communication-background-business-network-vector-design_53876-151122.jpg")
-	]
-
-	function article_card(article::Article, color::String; data_theme = "pastel")
-	    a(:href => article.path, :class => "w-full md:w-1/2 p-2",
-			divv(:data_theme => "$data_theme", :class => "card card-bordered border-$color text-center dark:text-[#e6e6e6]",
-				divv(:class => "card-body justify-center items-center h-32 md:h-40",
-					p(:class => "text-lg md:text-2xl", article.title),
-					p(:class => "text-sm md:text-base", "Click to open the notebook")
-				),
-				figure(
-					img(:class => "w-full h-40 md:h-48 object-cover", :src => article.image_url, :alt => article.title)
-				)
-	        )
-	    )
-	end
-end;
-
-# ╔═╡ 628e9ccc-7d52-48ef-a1f2-dd5092079422
-to_html(
-    divv(:class => "flex flex-col md:flex-row flex-wrap justify-center items-start",
-        [article_card(article, "accent"; data_theme = data_theme) for article in article_list_tutorials]...
-    )
-)
-
-# ╔═╡ 197b4d59-d97d-4ea2-8cc0-5cd286b9d59d
-to_html(
-    divv(:class => "flex flex-col md:flex-row flex-wrap justify-center items-start",
-        [article_card(article, "secondary"; data_theme = data_theme) for article in article_list_examples]...
-    )
-)
-
-# ╔═╡ aac0e8aa-e54d-42d8-a36b-00c282da5664
-# this is a fix for PlutoUI.jl#292
-begin
-	local result = begin
-	"""
-	```julia
-	Select(options::Vector; [default])
-	# or with a custom display value:
-	Select(options::Vector{Pair{Any,String}}; [default::Any])
-	```
-
-	A dropdown menu - the user can choose an element of the `options` vector.
-
-	See [`MultiSelect`](@ref) for a version that allows multiple selected items.
-
-	# Examples
-	```julia
-	@bind veg Select(["potato", "carrot"])
-	```
-	
-	```julia
-	@bind f Select([sin, cos, tan, sqrt])
-	
-	f(0.5)
-	```
-
-	You can also specify a display value by giving pairs `bound_value => display_value`:
-	
-	```julia
-	@bind f Select([cos => "cosine function", sin => "sine function"])
-
-	f(0.5)
-	```
-	"""
-	struct Select
-		options::AbstractVector{Pair}
-		default::Union{Missing, Any}
-	end
-	end
-	
-	Select(options::AbstractVector; default=missing) = Select([o => o for o in options], default)
-	
-	Select(options::AbstractVector{<:Pair}; default=missing) = Select(options, default)
-	
-	function Base.show(io::IO, m::MIME"text/html", select::Select)
-
-		
-		# compat code
-		if !AbstractPlutoDingetjes.is_supported_by_display(io, Bonds.transform_value)
-			compat_element = try
-				OldSelect(select.options, select.default)
-			catch
-				HTML("<span>❌ You need to update Pluto to use this PlutoUI element.</span>")
-			end
-			return show(io, m, compat_element)
-		end
-
-		
-		show(io, m, @htl(
-			"""<select>$(
-		map(enumerate(select.options)) do (i,o)
-				@htl(
-				"<option value='puiselect-$(i)' selected=$(!ismissing(select.default) && o.first == select.default)>$(
-				string(o.second)
-				)</option>")
-			end
-		)</select>"""))
-	end
-
-	Base.get(select::Select) = ismissing(select.default) ? first(select.options).first : select.default
-	Bonds.initial_value(select::Select) = ismissing(select.default) ? first(select.options).first : select.default
-	
-	Bonds.possible_values(select::Select) = ("puiselect-$(i)" for i in 1:length(select.options))
-	
-	function Bonds.transform_value(select::Select, val_from_js)
-		if startswith(val_from_js, "puiselect-")
-			val_num = tryparse(Int64, @view val_from_js[begin+10:end])
-			select.options[val_num].first
-		else
-			# and OldSelect was rendered
-			val_from_js
-		end
-	end
-	
-	function Bonds.validate_value(select::Select, val_from_js)
-		(val_from_js isa String) || return false
-		if startswith(val_from_js, "puiselect-")
-			val_num = tryparse(Int64, @view val_from_js[begin+10:end])
-			val_num isa Integer && val_num ∈ eachindex(select.options)
-		else
-			# and OldSelect was rendered
-			any(key == val_from_js for (key,val) in select.options)
-		end
-	end
-
-	nothing
+	x = 0:0.1:10
+	y1 = sin.(x)
+	y2 = cos.(x)
 end
 
+# ╔═╡ 423b8559-adf5-4208-a1d4-3d904386163f
+@bind amplitude Slider(0.1:0.1:2, default=1, show_value=true)
+
+# ╔═╡ 038760be-35b0-4c28-82be-2c1d5050ad71
+let
+	f = Figure()
+	ax = Axis(f[1, 1], title = "Sine & Cosine Plot")
+	scatterlines!(ax, x, amplitude .* y1, label="Sine")
+	scatterlines!(ax, x, amplitude .* y2, label="Cosine")
+	ylims!(low = -2.25, high = 2.25)
+	axislegend()
+	f
+end
+
+# ╔═╡ 30261e92-5452-48f9-8167-09e486d5383d
+md"""
+!!! success ""
+    ### Interactive Dashboard Example
+	Explore this interactive dashboard, created entirely within Glass Notebook, to see how easy it is to build and publish dynamic, data-driven visualizations.
+"""
+
+# ╔═╡ 8ea2e241-d259-4393-b768-4569d8936296
+iris = RDatasets.dataset("datasets", "iris");
+
+# ╔═╡ 8c4b31ae-699c-45bf-8c24-a15a522cfae5
+md"""
+**Interactive Iris Dashboard**
+
+Select Species: $(@bind species Select(unique(iris.Species)))
+"""
+
+# ╔═╡ a2141211-c00c-41e5-81b8-b687b2f8e41c
+let
+	f = Figure(size = (800, 800))
+    ax = Axis(f[1, 1:2], xlabel="Sepal Length", ylabel="Frequency")
+	sepal_lengths = iris[iris.Species .== species, :SepalLength]
+	hist!(ax, sepal_lengths, bins=range(4, 8, length=10), color=(:dodgerblue, 0.5), label=species)
+
+	ax = Axis(f[2, 1], xlabel=string(:SepalWidth), ylabel=string(:PetalLength))
+    for species in unique(iris.Species)
+        data = iris[iris.Species .== species, :]
+        scatter!(ax, data[:, :SepalWidth], data[:, :PetalLength], label=species)
+    end
+    axislegend()
+
+	ax = Axis(f[2, 2], xlabel=string(:SepalLength), ylabel=string(:PetalWidth))
+    for species in unique(iris.Species)
+        data = iris[iris.Species .== species, :]
+        scatter!(ax, data[:, :SepalLength], data[:, :PetalWidth], label=species)
+    end
+    axislegend()
+	f
+end
+
+# ╔═╡ 64d221b6-a568-4191-b8ec-2e7baec85994
+md"""
+## Get Started with Glass Notebook
+
+Ready to revolutionize your development workflow and take your interactive notebooks to the next level? Get started with Glass Notebook today and experience the power of interactive notebooks, seamless collaboration, and powerful web applications.
+
+1. **Sign up for Free**: Take advantage of our generous free tier and start creating interactive notebooks right away. Enjoy unlimited static notebook exports and explore the features of Glass Notebook. [Sign up now](https://glassnotebook.io/)
+
+2. **Explore the Documentation**: Dive into our comprehensive documentation to learn more about Glass Notebook's features, best practices, and advanced usage. Start with the [Getting Started](01_getting_started.jl) guide and explore the possibilities.
+
+3. **Join the Community**: Connect with other developers, share your projects, and get inspired by the Glass Notebook community. Join our [Zulip chat](https://julialang.zulipchat.com/#narrow/stream/428178-glassnotebook) to chat or reach out via email [support@glassnotebook.io](mailto:support@glassnotebook.io)
+
+Don't miss out on this opportunity to transform your development workflow and create engaging, interactive content. Sign up for Glass Notebook today and start bringing your ideas to life!
+"""
+
+# ╔═╡ aa0a27d6-3394-4f44-9d32-6c94ba83ac33
+TableOfContents()
+
+# ╔═╡ 0436ca99-0216-4ca1-928f-683dc2beae31
+carousel_css = """
+.carousel {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    color: var(--pluto-output-color);
+}
+
+.carousel-item {
+    display: none;
+    padding: 20px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--pluto-output-bg-color);
+    overflow-y: auto;
+}
+
+.carousel-item.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: var(--pluto-output-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.carousel-control.prev {
+    left: 5px;
+}
+
+.carousel-control.next {
+    right: 5px;
+}
+
+.rounded {
+    width: auto;
+    height: 200px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid;
+}
+
+.rounded-small {
+    width: auto;
+    height: 150px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid;
+}
+
+.carousel-item ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.carousel-item li {
+    margin-bottom: 10px;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.comparison-table th {
+    background-color: #e0f2fe;
+    color: black;
+}
+
+.feature-column {
+    background-color: #f4f4f5;
+    font-weight: bold;
+}
+
+.glass-notebook-column {
+    background-color: #dcfce7;
+}
+
+.excel-column {
+    background-color: #fef9c3;
+}
+
+.powerpoint-column {
+    background-color: #fee2e2;
+}
+
+@media screen and (min-width: 768px) {
+    .carousel-item {
+        padding: 40px;
+    }
+
+    .carousel-control {
+        font-size: 24px;
+    }
+
+    .carousel-control.prev {
+        left: 10px;
+    }
+
+    .carousel-control.next {
+        right: 10px;
+    }
+
+    .rounded {
+        height: 300px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+    }
+
+    .rounded-small {
+        height: 200px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+    }
+
+    .carousel-item ul {
+        margin-top: 20px;
+    }
+
+    .carousel-item li {
+        margin-bottom: 20px;
+    }
+
+    .comparison-table {
+        font-size: 18px;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+        padding: 10px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .rounded {
+        height: 400px;
+    }
+
+    .rounded-small {
+        height: 300px;
+    }
+}
+""";
+
+# ╔═╡ b2e32a9b-dd95-4ddd-9590-7275b67cabd4
+function carousel_script(carousel_id) 
+	return """
+	function initCarousel() {
+		const carousel = document.querySelector('#$(carousel_id)');
+		const carouselItems = carousel.querySelectorAll('.carousel-item');
+		const prevButton = carousel.querySelector('.carousel-control.prev');
+		const nextButton = carousel.querySelector('.carousel-control.next');
+		let currentIndex = 0;
+	
+		function showSlide(index) {
+			carouselItems[currentIndex].classList.remove('active');
+			carouselItems[index].classList.add('active');
+			currentIndex = index;
+		}
+	
+		function showNextSlide(e) {
+			e.preventDefault();
+			let nextIndex = (currentIndex + 1) % carouselItems.length;
+			showSlide(nextIndex);
+		}
+	
+		function showPrevSlide(e) {
+			e.preventDefault();
+			let prevIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+			showSlide(prevIndex);
+		}
+	
+		nextButton.addEventListener('click', showNextSlide);
+		prevButton.addEventListener('click', showPrevSlide);
+	}
+	initCarousel();
+	"""
+end;
+
+# ╔═╡ fca88ada-6830-4b42-968f-783a4a554c0a
+to_html(
+	divv(:id => "key-features-carousel", :class => "carousel",
+		h2("Key Features"),
+		divv(:class => "carousel-item active",
+			ul(
+				li("Seamless integration with Pluto.jl for creating interactive notebooks"),
+				li("GitHub integration for version control and collaboration"),
+				li("Publish notebooks as interactive web applications or static sites"),
+				li("Generous free tier and affordable pricing for individual developers and teams"),
+				li("Secure sharing of interactive content with code privacy"),
+			),
+			img(:class => "rounded-small", :src => "https://i.imgur.com/zS5FJI6.gif", :alt => "Overview")
+		),
+        divv(:class => "carousel-item",
+			h4("Interactive Notebooks with Pluto.jl"),
+			p("Glass Notebook seamlessly integrates with Pluto.jl, enabling you to create dynamic, interactive notebooks that update in real-time as you modify code or explore data. Bring your ideas to life with engaging, interactive content."),
+			img(:class => "rounded", :src => "https://i.imgur.com/858yjn5.gif", :alt => "Interactive Notebook GIF")
+        ),
+		divv(:class => "carousel-item",
+		    h4("GitHub Integration and Collaboration"),
+			p("Glass Notebook offers built-in GitHub integration, making version control and collaboration a breeze. Easily share notebooks with your team, track changes, and work together on projects seamlessly."),
+			img(:class => "rounded", :src => "https://img.freepik.com/free-vector/people-holding-connected-copy-space-circle-icons_53876-66230.jpg?t=st=1712008659~exp=1712012259~hmac=47b212dfe123208cad6f70c650b64667ec78a5c9a325bbf6362f18be43c8b5ec&w=2000", :alt => "Collaboration Example")
+		),
+		divv(:class => "carousel-item",
+		    h4("Publish Interactive Web Apps and Static Sites"),
+			p("With Glass Notebook, you can publish your notebooks as fully interactive web applications or static websites. Share your work with the world and let others explore your ideas and insights firsthand."),
+			img(:class => "rounded", :src => "https://img.freepik.com/free-vector/site-stats-concept-illustration_114360-1434.jpg?t=st=1712008693~exp=1712012293~hmac=1385d46ce717afa1904ed267c855d8200404a21f4dccdeb03cc1bc327ba73a94&w=1480", :alt => "Publishing Example")
+		),
+		divv(:class => "carousel-item",
+		    h4("Secure Sharing with Code Privacy"),
+			p("Glass Notebook's integration with GitHub and support for private repositories allows you to share interactive content with your team or the public while maintaining code privacy. Share your work with confidence, knowing your intellectual property is secure."),
+			img(:class => "rounded", :src => "https://img.freepik.com/free-vector/home-protection-surveillance-service-devices-house-security_335657-2464.jpg?t=st=1712008721~exp=1712012321~hmac=1dde61ea7f75f49ed70c8cd3e5f1911ac3dd992e9647f255574c3c05ddd32c0e&w=2000", :alt => "Secure Sharing Example")
+		),
+		a(:class => "carousel-control prev", :href => "#", "&#10094;"),
+		a(:class => "carousel-control next", :href => "#", "&#10095;"),
+		style(carousel_css),
+		script(carousel_script("key-features-carousel")),
+	)
+)
+
+# ╔═╡ 32210bb4-2730-4457-89bc-e74ea9e7b52f
+to_html(
+	divv(:id => "benefits-carousel", :class => "carousel",
+		h2("Unlock the Benefits of Glass Notebook"),
+		divv(:class => "carousel-item active",
+			h4("Empower Your Development Workflow"),
+			p("Glass Notebook empowers you to streamline your development workflow by providing a single, integrated platform for creating, sharing, and collaborating on interactive notebooks, documentation, and data-driven applications."),
+			ul(
+				li("Seamlessly move from idea to interactive notebook to published application"),
+				li("Eliminate the need for multiple tools and platforms"),
+				li("Ensure consistency and reproducibility across your projects"),
+			),
+			img(:class => "rounded", :src => "https://img.freepik.com/free-vector/flat-illustration-person-being-overwhelmed_23-2149330641.jpg?t=st=1712008864~exp=1712012464~hmac=c8f181efdabfae58dfc53eb7bf61d9dfe9423e92722119b1b974bb81a30bf987&w=1480", :alt => "Workflow Example")
+		),
+		divv(:class => "carousel-item",
+			h4("Collaborate with Ease"),
+			p("Glass Notebook's built-in GitHub integration and collaboration features make it easy to work with your team on projects, share ideas, and gather feedback."),
+			ul(
+				li("Seamlessly integrate with your existing GitHub workflow"),
+				li("Track changes and collaborate using familiar tools like pull requests and issues"),
+				li("Maintain code privacy while sharing interactive content"),
+			),
+			img(:class => "rounded", :src => "https://img.freepik.com/free-vector/agile-method-concept-illustration_114360-9826.jpg?t=st=1712008900~exp=1712012500~hmac=56ffc54c81f478a1dc2b1f05359b798fb3b96f8cc7f4ced8cf2340ec43818a4d&w=2000", :alt => "Collaboration Example")
+		),
+		divv(:class => "carousel-item",
+			h4("Bring Your Ideas to Life"),
+			p("With Glass Notebook, you can bring your ideas to life by creating engaging, interactive content that showcases your work and insights."),
+			ul(
+				li("Create dynamic, interactive notebooks using Pluto.jl"),
+				li("Publish notebooks as fully interactive web applications or static sites"),
+				li("Share your work with the world and gather feedback from users"),
+			),
+			img(:class => "rounded", :src => "https://img.freepik.com/free-vector/light-bulb-gears-cogs_1284-42609.jpg?t=st=1712008924~exp=1712012524~hmac=dc0c65df0b2cf4065cef47815b2ea167ef229d32bab27c7868b62ba6d0c7a300&w=1480", :alt => "Ideas Example")
+		),
+		divv(:class => "carousel-item",
+			h4("Affordable Pricing for Developers"),
+			p("Glass Notebook offers a generous free tier and reasonably priced paid plans, making it accessible to individual developers and teams of all sizes."),
+			ul(
+				li("Get started with our free tier and create up to 5 public notebooks"),
+				li("Upgrade to a paid plan for additional features and private notebook support"),
+				li("Enjoy affordable pricing that scales with your needs"),
+			),
+			img(:class => "rounded", :src => "https://img.freepik.com/free-vector/cloud-computing-concept_53876-64621.jpg?t=st=1712008968~exp=1712012568~hmac=cebcf245ab67dc7cfb220d85ee23972e880c63c36fc3fa2782f3f442c5e7051e&w=2000", :alt => "Pricing Example")
+		),
+		a(:class => "carousel-control prev", :href => "#", "&#10094;"),
+		a(:class => "carousel-control next", :href => "#", "&#10095;"),
+		style(carousel_css),
+		script(carousel_script("benefits-carousel")),
+	)
+)
+
+# ╔═╡ f26de4b1-78a3-4314-b265-84b6a8ea7991
+to_html(
+	divv(:id => "advanced-features-carousel", :class => "carousel",
+		h2("Advanced Features"),
+        divv(:class => "carousel-item active",
+			p("Glass Notebook offers advanced features that simplify complex documentation and enable the creation of powerful web applications."),
+			img(:class => "rounded", :src => "https://img.freepik.com/free-vector/gradient-brain-background_52683-120502.jpg?t=st=1712013658~exp=1712017258~hmac=0089d7679ace117c4616bb73902e97104f05501eed2b45daba7f787bd63f290d&w=2000", :alt => "Advanced Features")
+        ),
+        divv(:class => "carousel-item",
+			h4("Automatic Sidebar and Nested Docs"),
+			p("Glass Notebook automatically generates a sidebar based on your notebook structure, making it easy to navigate complex documentation and create a cohesive narrative."),
+			ul(
+				li("Automatically generated sidebar for easy navigation"),
+				li("Nested docs feature to organize and link related content"),
+				li("Create interactive stories and guided tutorials"),
+			),
+			img(:class => "rounded", :src => "https://i.imgur.com/E4PwSH8.png", :alt => "Sidebar Example")
+        ),
+        divv(:class => "carousel-item",
+			h4("Powerful Web Applications"),
+			p("Glass Notebook enables the creation and deployment of powerful web applications, including AI-driven tools and dashboards."),
+			ul(
+				li("Build and deploy complex web apps using Julia and Pluto.jl"),
+				li("Integrate AI and machine learning models seamlessly"),
+				li("Create interactive, data-driven dashboards"),
+			),
+			p("Check out this example of a powerful AI-based web app built and deployed using Glass Notebook:"),
+			a(:href => "https://glassnotebook.io/r/nASpZq07Kwr4d9cD3uvcB/image_segmentation.jl", :target => "_blank", "AI-Powered Web App",
+			img(:class => "rounded", :src => "https://i.imgur.com/ER4aM2T.gif", :alt => "AI Web App Example")
+			),
+        ),
+        a(:class => "carousel-control prev", :href => "#", "&#10094;"),
+        a(:class => "carousel-control next", :href => "#", "&#10095;"),
+        style(carousel_css),
+        script(carousel_script("advanced-features-carousel")),
+    )
+)
+
 # ╔═╡ Cell order:
-# ╟─090624ce-384c-4d6e-bd2a-262d5e0f6bc2
-# ╟─f6a952c2-9f71-44a2-a03b-8ac536197b6c
-# ╟─628e9ccc-7d52-48ef-a1f2-dd5092079422
-# ╟─08de7324-8ef4-44d0-bbfa-4beff681fcb0
-# ╟─197b4d59-d97d-4ea2-8cc0-5cd286b9d59d
-# ╟─0e56e7b7-9138-49b4-8870-0d7e201ed07a
-# ╟─5a0a7f42-dc8a-47fb-ad6b-bd1ba79c95f7
-# ╟─3069374b-197e-498d-ad04-6054d9de0d11
-# ╟─9511c3ab-6132-46de-a836-687c46ce36d9
-# ╟─418243fb-a87b-443e-bdd4-9d35ebb6c71d
-# ╟─a15c60cf-df35-43ef-99ba-e3c70fea793b
-# ╟─efc47ff7-8250-40d0-8c58-38b5380dec8c
-# ╟─12e21e58-ceb1-4ad9-b21f-f817eca2fa3b
-# ╟─ce2ef882-fc8d-4259-9a37-31170db9c9dd
-# ╟─978efdc4-d597-4b07-8601-459474440cc2
-# ╟─9f7fff06-92f2-4837-9eab-59150513b2e6
-# ╟─aac0e8aa-e54d-42d8-a36b-00c282da5664
+# ╟─1da93604-7a6b-4eac-b8a0-9405c62eae58
+# ╟─b14bcfc9-59ee-4ad7-9da4-cc527191c964
+# ╟─fca88ada-6830-4b42-968f-783a4a554c0a
+# ╟─e0d8cde6-a2b3-4e1c-b69e-4be3a7ab1162
+# ╠═295d0378-ea73-4f2d-8de2-bb5bf7cc73eb
+# ╠═4a014675-bc4a-4972-8250-625b1f9276fa
+# ╟─423b8559-adf5-4208-a1d4-3d904386163f
+# ╟─038760be-35b0-4c28-82be-2c1d5050ad71
+# ╟─32210bb4-2730-4457-89bc-e74ea9e7b52f
+# ╟─30261e92-5452-48f9-8167-09e486d5383d
+# ╠═fd2ea21c-e343-4955-a6ba-84a644b39ba3
+# ╠═8ea2e241-d259-4393-b768-4569d8936296
+# ╟─8c4b31ae-699c-45bf-8c24-a15a522cfae5
+# ╟─a2141211-c00c-41e5-81b8-b687b2f8e41c
+# ╟─f26de4b1-78a3-4314-b265-84b6a8ea7991
+# ╟─64d221b6-a568-4191-b8ec-2e7baec85994
+# ╟─9ad2c090-bc90-44e3-975c-658d53c36627
+# ╟─aa0a27d6-3394-4f44-9d32-6c94ba83ac33
+# ╟─0436ca99-0216-4ca1-928f-683dc2beae31
+# ╟─b2e32a9b-dd95-4ddd-9590-7275b67cabd4
