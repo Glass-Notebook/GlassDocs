@@ -1,105 +1,105 @@
 {
-    "sidebar": {
-        "title": "GlassDocs.jl",
+  "sidebar": {
+    "title": "GlassDocs.jl",
+    "elements": [
+      {
+        "type": "notebook",
+        "path": "index.jl",
+        "title": "Home"
+      },
+      {
+        "type": "folder",
+        "title": "Tutorials",
+        "defaultOpened": true,
         "elements": [
-            {
-                "type": "notebook",
-                "path": "index.jl",
-                "title": "Home"
-            },
-            {
-                "type": "folder",
-                "title": "Tutorials",
-                "defaultOpened": true,
-                "elements": [
-                    {
-                        "type": "notebook",
-                        "path": "01_getting_started.jl",
-                        "title": "Getting Started"
-                    },
-                    {
-                        "type": "notebook",
-                        "path": "02_advanced_usage.jl",
-                        "title": "Advanced Usage"
-                    }
-                ]
-            },
-            {
-                "type": "folder",
-                "title": "Examples",
-                "defaultOpened": false,
-                "elements": [
-                    {
-                        "type": "folder",
-                        "title": "Package Docs",
-                        "defaultOpened": false,
-                        "elements": [
-                            {
-                                "type": "folder",
-                                "title": "CalciumScoring.jl",
-                                "path": "CalciumScoring.jl",
-                                "defaultOpened": false
-                            },
-                            {
-                                "type": "folder",
-                                "title": "Losers.jl",
-                                "path": "Losers.jl",
-                                "defaultOpened": false
-                            },
-                            {
-                                "type": "folder",
-                                "title": "DistanceTransforms.jl",
-                                "path": "DistanceTransforms.jl",
-                                "defaultOpened": false
-                            }
-                        ]
-                    },
-                    {
-                        "type": "folder",
-                        "title": "Tutorials",
-                        "defaultOpened": false,
-                        "elements": [
-                            {
-                                "type": "folder",
-                                "title": "TidierCourse",
-                                "path": "TidierCourse",
-                                "defaultOpened": false
-                            }
-                        ]
-                    },
-                    {
-                        "type": "folder",
-                        "title": "Teaching",
-                        "defaultOpened": false,
-                        "elements": []
-                    },
-                    {
-                        "type": "folder",
-                        "title": "Dashbords",
-                        "defaultOpened": false,
-                        "elements": [
-                            {
-                                "type": "folder",
-                                "title": "PlutoDashboards",
-                                "path": "PlutoDashboards",
-                                "defaultOpened": false
-                            }
-                        ]
-                    },
-                    {
-                        "type": "folder",
-                        "title": "Web Applications",
-                        "defaultOpened": false,
-                        "elements": []
-                    },
-                    {
-                        "type": "folder",
-                        "title": "Nested Projects",
-                        "defaultOpened": false,
-                        "elements": []
-                    }
-                ]
-            }
+          {
+            "type": "notebook",
+            "path": "01_getting_started.jl",
+            "title": "Getting Started"
+          },
+          {
+            "type": "notebook",
+            "path": "02_advanced_usage.jl",
+            "title": "Advanced Usage"
+          }
         ]
-    }
+      },
+      {
+        "type": "folder",
+        "title": "Examples",
+        "defaultOpened": false,
+        "elements": [
+          {
+            "type": "folder",
+            "title": "Package Docs",
+            "defaultOpened": false,
+            "elements": [
+              {
+                "type": "folder",
+                "title": "CalciumScoring.jl",
+                "path": "CalciumScoring.jl",
+                "defaultOpened": false
+              },
+              {
+                "type": "folder",
+                "title": "Losers.jl",
+                "path": "Losers.jl",
+                "defaultOpened": false
+              },
+              {
+                "type": "folder",
+                "title": "DistanceTransforms.jl",
+                "path": "DistanceTransforms.jl",
+                "defaultOpened": false
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "title": "Tutorials",
+            "defaultOpened": false,
+            "elements": [
+              {
+                "type": "folder",
+                "title": "TidierCourse",
+                "path": "TidierCourse",
+                "defaultOpened": false
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "title": "Teaching",
+            "defaultOpened": false,
+            "elements": []
+          },
+          {
+            "type": "folder",
+            "title": "Dashbords",
+            "defaultOpened": false,
+            "elements": [
+              {
+                "type": "folder",
+                "title": "PlutoDashboards",
+                "path": "PlutoDashboards",
+                "defaultOpened": false
+              }
+            ]
+          },
+          {
+            "type": "folder",
+            "title": "Web Applications",
+            "defaultOpened": false,
+            "elements": []
+          },
+          {
+            "type": "folder",
+            "title": "Nested Projects",
+            "defaultOpened": false,
+            "elements": []
+          }
+        ]
+      }
+    ]
+  }
 }
