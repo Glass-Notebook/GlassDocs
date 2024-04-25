@@ -16,6 +16,9 @@ using Pkg; Pkg.activate("."); Pkg.instantiate()
 # ╠═╡ show_logs = false
 using PlutoUI
 
+# ╔═╡ 1d8def68-dd46-4ff4-b0d8-5d8303748fce
+using PlutoTeachingTools
+
 # ╔═╡ 70554597-c3b3-44ed-a784-b04127af54cf
 using HTMLStrings
 
@@ -40,6 +43,121 @@ to_html(
 			li(strong("Hyper-Nested Layout (Coming Soon)"), ": Combine multiple nested projects into a single interface using a ", code("navbar.json"), " file.")
 		)
 	)
+)
+
+# ╔═╡ 1188b880-be48-45f9-bd5f-faa03934b9f1
+Foldable(
+	"Example `structure.json` file",
+	md"""
+	!!! info "Corresponds to this GlassDocs repository"
+		```json
+		{
+		  "sidebar": {
+		    "title": "GlassDocs.jl",
+		    "elements": [
+		      {
+		        "type": "notebook",
+		        "path": "index.jl",
+		        "title": "Home"
+		      },
+		      {
+		        "type": "folder",
+		        "title": "Tutorials",
+		        "defaultOpened": true,
+		        "elements": [
+		          {
+		            "type": "notebook",
+		            "path": "01_getting_started.jl",
+		            "title": "Getting Started"
+		          },
+		          {
+		            "type": "notebook",
+		            "path": "02_advanced_usage.jl",
+		            "title": "Advanced Usage"
+		          }
+		        ]
+		      },
+		      {
+		        "type": "folder",
+		        "title": "Examples",
+		        "defaultOpened": false,
+		        "elements": [
+		          {
+		            "type": "folder",
+		            "title": "Package Docs",
+		            "defaultOpened": false,
+		            "elements": [
+		              {
+		                "type": "folder",
+		                "title": "CalciumScoring.jl",
+		                "path": "CalciumScoring.jl",
+		                "defaultOpened": false
+		              },
+		              {
+		                "type": "folder",
+		                "title": "Losers.jl",
+		                "path": "Losers.jl",
+		                "defaultOpened": false
+		              },
+		              {
+		                "type": "folder",
+		                "title": "DistanceTransforms.jl",
+		                "path": "DistanceTransforms.jl",
+		                "defaultOpened": false
+		              }
+		            ]
+		          },
+		          {
+		            "type": "folder",
+		            "title": "Tutorials",
+		            "defaultOpened": false,
+		            "elements": [
+		              {
+		                "type": "folder",
+		                "title": "TidierCourse",
+		                "path": "TidierCourse",
+		                "defaultOpened": false
+		              }
+		            ]
+		          },
+		          {
+		            "type": "folder",
+		            "title": "Teaching",
+		            "defaultOpened": false,
+		            "elements": []
+		          },
+		          {
+		            "type": "folder",
+		            "title": "Dashbords",
+		            "defaultOpened": false,
+		            "elements": [
+		              {
+		                "type": "folder",
+		                "title": "PlutoDashboards",
+		                "path": "PlutoDashboards",
+		                "defaultOpened": false
+		              }
+		            ]
+		          },
+		          {
+		            "type": "folder",
+		            "title": "Web Applications",
+		            "defaultOpened": false,
+		            "elements": []
+		          },
+		          {
+		            "type": "folder",
+		            "title": "Nested Projects",
+		            "defaultOpened": false,
+		            "elements": []
+		          }
+		        ]
+		      }
+		    ]
+		  }
+		}
+		```
+	"""
 )
 
 # ╔═╡ 4c9f2468-23b1-4bd3-aafa-8dcf06bf9d7d
@@ -83,7 +201,7 @@ carousel_css = """
 .carousel {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 80vh;
     overflow-y: auto;
     color: var(--pluto-output-color);
 }
@@ -134,7 +252,7 @@ carousel_css = """
 .rounded-small {
     width: auto;
     height: 150px;
-    margin-bottom: 10px;
+    margin-bottom: 2px;
     border-radius: 5px;
     border: 1px solid;
 }
@@ -207,7 +325,7 @@ carousel_css = """
     }
 
     .rounded-small {
-        height: 200px;
+        height: 250px;
         margin-bottom: 20px;
         border-radius: 10px;
     }
@@ -230,7 +348,7 @@ carousel_css = """
     }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 2000px) {
     .rounded {
         height: 400px;
     }
@@ -280,7 +398,6 @@ end;
 to_html(
 	divv(:id => "notebook-export-options-carousel", :class => "carousel",
 		h2("Notebook Export Options"),
-		p("Users can choose from different notebook types depending on their requirements for interactivity and data handling. Here's an overview of the available options:"),
 		divv(:class => "carousel-item active",
 			p("This section aims to guide users in selecting the right type of notebook export to match their specific project requirements, ensuring efficient and effective use of Glass Notebook's features."),
 			p(:style => "font-weight:bold", "We automatically determine where pre-computed (interactive) or fully-interactive (live) notebooks are needed, so you don't have to worry about it."),
@@ -365,7 +482,6 @@ to_html(
 				li("Automatically updates as you add, remove, or rename notebooks"),
 				li("Notebook titles can be customized using Pluto's frontmatter")
 			),
-			p("The sidebar will update automatically with the new title when you export your project."),
 			img(:class => "rounded-small", :src => "https://i.imgur.com/YFUFii5.png", :alt => "Simple Sidebar")
 		),
 		divv(:class => "carousel-item",
@@ -412,52 +528,6 @@ to_html(
 			),
 			img(:class => "rounded-small", :src => "https://i.imgur.com/i0WMr0u.gif", :alt => "stucture.json gif")
 		),
-		divv(:class => "carousel-item",
-			h4("Example", code("structure.json")),
-			pre(code("""
-			{
-				"sidebar": {
-					"title": "My Nested Project",
-					"elements": [
-						{
-							"type": "notebook",
-							"path": "index.jl",
-							"title": "Home"
-						},
-						{
-							"type": "folder",
-							"title": "Package A",
-							"defaultOpened": true,
-							"elements": [
-								{
-									"type": "notebook",
-									"path": "packages/PackageA/tutorials/getting_started.jl",
-									"title": "Package A: Getting Started"
-								},
-								{
-									"type": "notebook",
-									"path": "packages/PackageA/examples/advanced_usage.jl",
-									"title": "Package A: Advanced Usage"
-								}
-							]
-						},
-						{
-							"type": "folder",
-							"title": "Package B",
-							"defaultOpened": false,
-							"elements": [
-								{
-									"type": "notebook",
-									"path": "packages/PackageB/introduction.jl",
-									"title": "Package B: Introduction"
-								}
-							]
-						}
-					]
-				}
-			}
-			"""))
-		),
 		a(:class => "carousel-control prev", :href => "#", "&#10094;"),
 		a(:class => "carousel-control next", :href => "#", "&#10095;"),
 		style(carousel_css),
@@ -496,10 +566,12 @@ to_html(
 # ╟─e5e3e9d5-e056-4cab-ad08-19f440f9491e
 # ╟─f830d549-e0fd-49ce-8871-989b3c32dbcb
 # ╟─8303984d-dba1-4336-bba6-e0b303463ae5
+# ╟─1188b880-be48-45f9-bd5f-faa03934b9f1
 # ╟─d8a383fe-be9c-45e4-b616-cf92b772a89f
 # ╟─4c9f2468-23b1-4bd3-aafa-8dcf06bf9d7d
 # ╟─46581809-1673-45c7-8cc1-40bf12b2a8d7
 # ╟─463236e3-f8e0-4748-bbfc-4a4331c61ea6
+# ╟─1d8def68-dd46-4ff4-b0d8-5d8303748fce
 # ╟─70554597-c3b3-44ed-a784-b04127af54cf
 # ╟─f4914413-531e-408f-85bc-87448e9c2987
 # ╟─02686122-3914-413b-8914-2f3b70e002e2

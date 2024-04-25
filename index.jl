@@ -192,7 +192,7 @@ carousel_css = """
 .carousel {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 80vh;
     overflow-y: auto;
     color: var(--pluto-output-color);
 }
@@ -243,7 +243,7 @@ carousel_css = """
 .rounded-small {
     width: auto;
     height: 150px;
-    margin-bottom: 10px;
+    margin-bottom: 2px;
     border-radius: 5px;
     border: 1px solid;
 }
@@ -316,7 +316,7 @@ carousel_css = """
     }
 
     .rounded-small {
-        height: 200px;
+        height: 250px;
         margin-bottom: 20px;
         border-radius: 10px;
     }
@@ -339,7 +339,7 @@ carousel_css = """
     }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 2000px) {
     .rounded {
         height: 400px;
     }
