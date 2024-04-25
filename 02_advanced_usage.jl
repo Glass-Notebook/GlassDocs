@@ -83,8 +83,8 @@ carousel_css = """
 .carousel {
     position: relative;
     width: 100%;
-    height: auto;
-    overflow: hidden;
+    height: 100vh;
+    overflow-y: auto;
     color: var(--pluto-output-color);
 }
 
@@ -92,6 +92,7 @@ carousel_css = """
     display: none;
     padding: 20px;
     width: 100%;
+    max-height: 100%;
     border-radius: 5px;
     background-color: var(--pluto-output-bg-color);
     overflow-y: auto;
@@ -275,54 +276,77 @@ function carousel_script(carousel_id)
 	"""
 end;
 
-# ╔═╡ 8154688e-63c6-42b0-b934-b631e3637c4f
+# ╔═╡ 5cc2ae1e-54a3-4559-82fb-caa2ca074f4f
 to_html(
 	divv(:id => "notebook-export-options-carousel", :class => "carousel",
 		h2("Notebook Export Options"),
-		p("Understanding the export options in Glass Notebook is key to utilizing its full potential. Users can choose from different notebook types depending on their requirements for interactivity and data handling. Here's an overview of the available options:"),
-		table(:class => "comparison-table",
-			thead(
-				tr(
-					th("Notebook Type"),
-					th("Interactivity Level"),
-					th("Data Injection Capability"),
-					th("Relative Cost")
-				)
-			),
-			tbody(
-				tr(
-					td("Static Notebooks", :class => "feature-column"),
-					td("None", :class => "glass-notebook-column"),
-					td("No", :class => "excel-column"),
-					td("Lowest", :class => "powerpoint-column")
+		p("Users can choose from different notebook types depending on their requirements for interactivity and data handling. Here's an overview of the available options:"),
+		divv(:class => "carousel-item active",
+			p("This section aims to guide users in selecting the right type of notebook export to match their specific project requirements, ensuring efficient and effective use of Glass Notebook's features."),
+			p(:style => "font-weight:bold", "We automatically determine where pre-computed (interactive) or fully-interactive (live) notebooks are needed, so you don't have to worry about it."),
+			table(:class => "comparison-table",
+				thead(
+					tr(
+						th("Notebook Type"),
+						th("Interactivity Level"),
+						th("Data Injection Capability"),
+						th("Relative Cost")
+					)
 				),
-				tr(
-					td("Precomputed Notebooks", :class => "feature-column"),
-					td("Interactive UIs", :class => "glass-notebook-column"),
-					td("No", :class => "excel-column"),
-					td("Medium", :class => "powerpoint-column")
-				),
-				tr(
-					td("Fully Interactive", :class => "feature-column"),
-					td("Full", :class => "glass-notebook-column"),
-					td("Yes (e.g., data uploads)", :class => "excel-column"),
-					td("Highest", :class => "powerpoint-column")
+				tbody(
+					tr(
+						td("Static Notebooks", :class => "feature-column"),
+						td("None", :class => "glass-notebook-column"),
+						td("No", :class => "excel-column"),
+						td("Lowest", :class => "powerpoint-column")
+					),
+					tr(
+						td("Precomputed (Interactive) Notebooks", :class => "feature-column"),
+						td("Interactive UIs", :class => "glass-notebook-column"),
+						td("No", :class => "excel-column"),
+						td("Medium", :class => "powerpoint-column")
+					),
+					tr(
+						td("Fully Interactive (Live) Notebooks", :class => "feature-column"),
+						td("Full", :class => "glass-notebook-column"),
+						td("Yes (e.g., data uploads)", :class => "excel-column"),
+						td("Highest", :class => "powerpoint-column")
+					)
 				)
 			)
 		),
-		divv(:class => "carousel-item active",
+		divv(:class => "carousel-item",
 			h4("Static Notebooks"),
-			p("Ideal for basic viewing needs, these notebooks offer no interactivity or data injection but come at the lowest cost.")
+			p("Ideal for basic viewing needs, these notebooks offer no interactivity or data injection and are free to export"),
+			ul(
+				li("No interactivity"),
+				li("No data injection"),
+				li("Lowest cost")
+			),
+			img(:class => "rounded-small", :src => "https://images.unsplash.com/photo-1611434132218-d687f8a5f378?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3RhdGljfGVufDB8fDB8fHww", :alt => "Static Notebook Example")
 		),
 		divv(:class => "carousel-item",
-			h4("Precomputed Notebooks"),
-			p("These provide interactive user interfaces without real-time data capabilities, striking a balance between interactivity and cost.")
+			h4("Precomputed (Interactive) Notebooks"),
+			p("Also known as \"pre-computed slider servers\", these notebooks provide interactive user interfaces without real-time data capabilities. They are self-contained and can be pre-computed, striking a balance between interactivity and cost."),
+			ul(
+				li("Interactive user interfaces"),
+				li("No real-time data capabilities"),
+				li("Medium cost"),
+				li("Suitable for notebooks with self-contained data")
+			),
+			img(:class => "rounded-small", :src => "https://images.unsplash.com/photo-1509099652299-30938b0aeb63?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", :alt => "Precomputed Notebook Example")
 		),
 		divv(:class => "carousel-item",
-			h4("Fully Interactive Notebooks"),
-			p("For the most advanced usage, these notebooks offer full interactivity with real-time data handling capabilities, such as data uploads, making them suitable for complex applications.")
+			h4("Fully Interactive (Live) Notebooks"),
+			p("For the most advanced usage, these notebooks offer full interactivity with real-time data handling capabilities, such as data uploads, making them suitable for complex applications. They require a full-time running server."),
+			ul(
+				li("Full interactivity"),
+				li("Real-time data handling (e.g., data uploads)"),
+				li("Highest cost"),
+				li("Suitable for notebooks that allow user uploads or real-time data processing")
+			),
+			img(:class => "rounded-small", :src => "https://images.unsplash.com/photo-1534078362425-387ae9668c17?q=80&w=2938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", :alt => "Fully Interactive Notebook Example")
 		),
-		p("This section aims to guide users in selecting the right type of notebook export to match their specific project requirements, ensuring efficient and effective use of Glass Notebook's features."),
 		a(:class => "carousel-control prev", :href => "#", "&#10094;"),
 		a(:class => "carousel-control next", :href => "#", "&#10095;"),
 		style(carousel_css),
@@ -341,16 +365,17 @@ to_html(
 				li("Automatically updates as you add, remove, or rename notebooks"),
 				li("Notebook titles can be customized using Pluto's frontmatter")
 			),
-			p("The sidebar will update automatically with the new title when you export your project.")
+			p("The sidebar will update automatically with the new title when you export your project."),
+			img(:class => "rounded-small", :src => "https://i.imgur.com/YFUFii5.png", :alt => "Simple Sidebar")
 		),
 		divv(:class => "carousel-item",
-			img(:class => "rounded", :src => "https://github.com/Dale-Black/GlassDocs/blob/master/assets/savepluto.jpeg?raw=true", :alt => "Save Pluto Notebook")
+			img(:class => "rounded", :src => "https://i.imgur.com/x57zqCX.png", :alt => "Save Pluto Notebook")
 		),
 		divv(:class => "carousel-item",
-			img(:class => "rounded", :src => "https://github.com/Dale-Black/GlassDocs/blob/master/assets/editfrontmatter.jpeg?raw=true", :alt => "Edit Frontmatter")
+			img(:class => "rounded", :src => "https://i.imgur.com/ClmUYH3.png", :alt => "Edit Frontmatter")
 		),
 		divv(:class => "carousel-item",
-			img(:class => "rounded", :src => "https://github.com/Dale-Black/GlassDocs/blob/master/assets/frontmatter.jpeg?raw=true", :alt => "Frontmatter")
+			img(:class => "rounded", :src => "https://i.imgur.com/tRAHMjd.png", :alt => "Frontmatter")
 		),
 		divv(:class => "carousel-item",
 			p(strong("Homepage Priority"), ": The ", code("index.jl"), " notebook always appears first in the sidebar, ensuring easy access to the homepage."),
@@ -373,19 +398,22 @@ to_html(
 				li("Include notebooks from multiple packages or projects"),
 				li("Create a unified structure with folders and subfolders"),
 				li("Automatically incorporate updates from linked packages or projects")
-			)
+			),
+			img(:class => "rounded-small", :src => "https://i.imgur.com/px0EdjZ.png", :alt => "Nested Sidebar")
 		),
 		divv(:class => "carousel-item",
-			p("Implementing a Nested Project Layout:"),
+			h4("Implementing a Nested Project Layout:"),
 			ol(
 				li("Create a ", code("structure.json"), " file in your main project's root directory"),
 				li("Define your desired sidebar structure using the provided JSON format"),
 				li("Specify the paths to notebooks from different packages or projects"),
 				li("Use Git submodules to include the linked packages or projects"),
 				li("Export your main project, and the nested sidebar will be generated")
-			)
+			),
+			img(:class => "rounded-small", :src => "https://i.imgur.com/i0WMr0u.gif", :alt => "stucture.json gif")
 		),
 		divv(:class => "carousel-item",
+			h4("Example", code("structure.json")),
 			pre(code("""
 			{
 				"sidebar": {
@@ -443,7 +471,8 @@ to_html(
 		h2("3. Hyper-Nested Layout (Coming Soon)"),
 		divv(:class => "carousel-item active",
 			p("The Hyper-Nested Layout is an upcoming feature that will allow you to combine multiple nested projects into a single, unified interface. With this layout option, you can create a top-level navigation bar using a ", code("navbar.json"), " file, enabling users to easily switch between different nested projects."),
-			p("This feature will be particularly useful for creating comprehensive documentation that covers multiple domains or large-scale projects consisting of several nested projects.")
+			p("This feature will be particularly useful for creating comprehensive documentation that covers multiple domains or large-scale projects consisting of several nested projects."),
+			img(:class => "rounded-small", :src => "https://images.unsplash.com/photo-1614332287897-cdc485fa562d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y29taW5nJTIwc29vbnxlbnwwfHwwfHx8MA%3D%3D", :alt => "Hyper nested layout")
 		),
 		divv(:class => "carousel-item",
 			ul(
@@ -451,7 +480,8 @@ to_html(
 				li("Provide a top-level navigation bar for easy access to different projects"),
 				li("Create a unified and intuitive documentation experience for users")
 			),
-			p("Stay tuned for more information on this powerful new feature!")
+			p("Stay tuned for more information on this powerful new feature!"),
+			img(:class => "rounded-small", :src => "https://images.unsplash.com/photo-1586892477838-2b96e85e0f96?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8b3JnYW5pemV8ZW58MHx8MHx8fDA%3D", :alt => "Hyper nested layout Organized")
 		),
 		a(:class => "carousel-control prev", :href => "#", "&#10094;"),
 		a(:class => "carousel-control next", :href => "#", "&#10095;"),
@@ -462,7 +492,7 @@ to_html(
 
 # ╔═╡ Cell order:
 # ╟─9d11e80c-26f7-4aa6-8d8e-c9e2bcbe220f
-# ╟─8154688e-63c6-42b0-b934-b631e3637c4f
+# ╟─5cc2ae1e-54a3-4559-82fb-caa2ca074f4f
 # ╟─e5e3e9d5-e056-4cab-ad08-19f440f9491e
 # ╟─f830d549-e0fd-49ce-8871-989b3c32dbcb
 # ╟─8303984d-dba1-4336-bba6-e0b303463ae5

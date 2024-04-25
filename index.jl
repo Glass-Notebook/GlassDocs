@@ -26,13 +26,13 @@ end
 # ╔═╡ 295d0378-ea73-4f2d-8de2-bb5bf7cc73eb
 begin
 	using PlutoUI: Slider
-	using CairoMakie: scatterlines!, Figure, Axis
+	using CairoMakie: scatterlines!, Figure, Axis, ylims!
 end
 
 # ╔═╡ fd2ea21c-e343-4955-a6ba-84a644b39ba3
 begin
-	using CairoMakie
-	using RDatasets
+	using CairoMakie: hist!, scatter!, axislegend
+	using RDatasets: dataset
 end
 
 # ╔═╡ 1da93604-7a6b-4eac-b8a0-9405c62eae58
@@ -125,7 +125,7 @@ md"""
 """
 
 # ╔═╡ 8ea2e241-d259-4393-b768-4569d8936296
-iris = RDatasets.dataset("datasets", "iris");
+iris = dataset("datasets", "iris");
 
 # ╔═╡ 8c4b31ae-699c-45bf-8c24-a15a522cfae5
 md"""
@@ -137,18 +137,30 @@ Select Species: $(@bind species Select(unique(iris.Species)))
 # ╔═╡ a2141211-c00c-41e5-81b8-b687b2f8e41c
 let
 	f = Figure(size = (800, 800))
-    ax = Axis(f[1, 1:2], xlabel="Sepal Length", ylabel="Frequency")
+    ax = Axis(
+		f[1, 1:2], 
+		xlabel="Sepal Length", 
+		ylabel="Frequency"
+	)
 	sepal_lengths = iris[iris.Species .== species, :SepalLength]
 	hist!(ax, sepal_lengths, bins=range(4, 8, length=10), color=(:dodgerblue, 0.5), label=species)
 
-	ax = Axis(f[2, 1], xlabel=string(:SepalWidth), ylabel=string(:PetalLength))
+	ax = Axis(
+		f[2, 1],
+		xlabel=string(:SepalWidth),
+		ylabel=string(:PetalLength)
+	)
     for species in unique(iris.Species)
         data = iris[iris.Species .== species, :]
         scatter!(ax, data[:, :SepalWidth], data[:, :PetalLength], label=species)
     end
     axislegend()
 
-	ax = Axis(f[2, 2], xlabel=string(:SepalLength), ylabel=string(:PetalWidth))
+	ax = Axis(
+		f[2, 2],
+		xlabel=string(:SepalLength),
+		ylabel=string(:PetalWidth)
+	)
     for species in unique(iris.Species)
         data = iris[iris.Species .== species, :]
         scatter!(ax, data[:, :SepalLength], data[:, :PetalWidth], label=species)
@@ -180,8 +192,8 @@ carousel_css = """
 .carousel {
     position: relative;
     width: 100%;
-    height: auto;
-    overflow: hidden;
+    height: 100vh;
+    overflow-y: auto;
     color: var(--pluto-output-color);
 }
 
@@ -189,6 +201,7 @@ carousel_css = """
     display: none;
     padding: 20px;
     width: 100%;
+    max-height: 100%;
     border-radius: 5px;
     background-color: var(--pluto-output-bg-color);
     overflow-y: auto;
@@ -389,22 +402,22 @@ to_html(
         divv(:class => "carousel-item",
 			h4("Interactive Notebooks with Pluto.jl"),
 			p("Glass Notebook seamlessly integrates with Pluto.jl, enabling you to create dynamic, interactive notebooks that update in real-time as you modify code or explore data. Bring your ideas to life with engaging, interactive content."),
-			img(:class => "rounded", :src => "https://i.imgur.com/858yjn5.gif", :alt => "Interactive Notebook GIF")
+			img(:class => "rounded", :src => "https://i.imgur.com/SNXYQHe.gif", :alt => "Interactive Notebook GIF")
         ),
 		divv(:class => "carousel-item",
 		    h4("GitHub Integration and Collaboration"),
-			p("Glass Notebook offers built-in GitHub integration, making version control and collaboration a breeze. Easily share notebooks with your team, track changes, and work together on projects seamlessly."),
-			img(:class => "rounded", :src => "https://img.freepik.com/free-vector/people-holding-connected-copy-space-circle-icons_53876-66230.jpg?t=st=1712008659~exp=1712012259~hmac=47b212dfe123208cad6f70c650b64667ec78a5c9a325bbf6362f18be43c8b5ec&w=2000", :alt => "Collaboration Example")
+			p("Glass Notebook offers built-in GitHub integration, making version control and collaboration a breeze. Simply utilize Git/GitHub as you already do, and in one-click, export your notebook/repository on Glass Notebook."),
+			img(:class => "rounded", :src => "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?q=80&w=2976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", :alt => "Collaboration Example")
 		),
 		divv(:class => "carousel-item",
 		    h4("Publish Interactive Web Apps and Static Sites"),
 			p("With Glass Notebook, you can publish your notebooks as fully interactive web applications or static websites. Share your work with the world and let others explore your ideas and insights firsthand."),
-			img(:class => "rounded", :src => "https://img.freepik.com/free-vector/site-stats-concept-illustration_114360-1434.jpg?t=st=1712008693~exp=1712012293~hmac=1385d46ce717afa1904ed267c855d8200404a21f4dccdeb03cc1bc327ba73a94&w=1480", :alt => "Publishing Example")
+			img(:class => "rounded", :src => "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", :alt => "Publishing Example")
 		),
 		divv(:class => "carousel-item",
 		    h4("Secure Sharing with Code Privacy"),
 			p("Glass Notebook's integration with GitHub and support for private repositories allows you to share interactive content with your team or the public while maintaining code privacy. Share your work with confidence, knowing your intellectual property is secure."),
-			img(:class => "rounded", :src => "https://img.freepik.com/free-vector/home-protection-surveillance-service-devices-house-security_335657-2464.jpg?t=st=1712008721~exp=1712012321~hmac=1dde61ea7f75f49ed70c8cd3e5f1911ac3dd992e9647f255574c3c05ddd32c0e&w=2000", :alt => "Secure Sharing Example")
+			img(:class => "rounded", :src => "https://images.unsplash.com/photo-1555529902-5261145633bf?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", :alt => "Secure Sharing Example")
 		),
 		a(:class => "carousel-control prev", :href => "#", "&#10094;"),
 		a(:class => "carousel-control next", :href => "#", "&#10095;"),
@@ -425,7 +438,7 @@ to_html(
 				li("Eliminate the need for multiple tools and platforms"),
 				li("Ensure consistency and reproducibility across your projects"),
 			),
-			img(:class => "rounded", :src => "https://img.freepik.com/free-vector/flat-illustration-person-being-overwhelmed_23-2149330641.jpg?t=st=1712008864~exp=1712012464~hmac=c8f181efdabfae58dfc53eb7bf61d9dfe9423e92722119b1b974bb81a30bf987&w=1480", :alt => "Workflow Example")
+			img(:class => "rounded", :src => "https://images.unsplash.com/photo-1529310399831-ed472b81d589?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZWZmaWNpZW50fGVufDB8fDB8fHww", :alt => "Workflow Example")
 		),
 		divv(:class => "carousel-item",
 			h4("Collaborate with Ease"),
@@ -435,7 +448,7 @@ to_html(
 				li("Track changes and collaborate using familiar tools like pull requests and issues"),
 				li("Maintain code privacy while sharing interactive content"),
 			),
-			img(:class => "rounded", :src => "https://img.freepik.com/free-vector/agile-method-concept-illustration_114360-9826.jpg?t=st=1712008900~exp=1712012500~hmac=56ffc54c81f478a1dc2b1f05359b798fb3b96f8cc7f4ced8cf2340ec43818a4d&w=2000", :alt => "Collaboration Example")
+			img(:class => "rounded", :src => "https://images.unsplash.com/photo-1630514969818-94aefc42ec47?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", :alt => "Collaboration Example")
 		),
 		divv(:class => "carousel-item",
 			h4("Bring Your Ideas to Life"),
@@ -445,7 +458,7 @@ to_html(
 				li("Publish notebooks as fully interactive web applications or static sites"),
 				li("Share your work with the world and gather feedback from users"),
 			),
-			img(:class => "rounded", :src => "https://img.freepik.com/free-vector/light-bulb-gears-cogs_1284-42609.jpg?t=st=1712008924~exp=1712012524~hmac=dc0c65df0b2cf4065cef47815b2ea167ef229d32bab27c7868b62ba6d0c7a300&w=1480", :alt => "Ideas Example")
+			img(:class => "rounded", :src => "https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=2864&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", :alt => "Ideas Example")
 		),
 		divv(:class => "carousel-item",
 			h4("Affordable Pricing for Developers"),
@@ -455,7 +468,7 @@ to_html(
 				li("Upgrade to a paid plan for additional features and private notebook support"),
 				li("Enjoy affordable pricing that scales with your needs"),
 			),
-			img(:class => "rounded", :src => "https://img.freepik.com/free-vector/cloud-computing-concept_53876-64621.jpg?t=st=1712008968~exp=1712012568~hmac=cebcf245ab67dc7cfb220d85ee23972e880c63c36fc3fa2782f3f442c5e7051e&w=2000", :alt => "Pricing Example")
+			img(:class => "rounded", :src => "https://plus.unsplash.com/premium_photo-1680196764069-2c373356fee9?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", :alt => "Pricing Example")
 		),
 		a(:class => "carousel-control prev", :href => "#", "&#10094;"),
 		a(:class => "carousel-control next", :href => "#", "&#10095;"),
@@ -470,7 +483,7 @@ to_html(
 		h2("Advanced Features"),
         divv(:class => "carousel-item active",
 			p("Glass Notebook offers advanced features that simplify complex documentation and enable the creation of powerful web applications."),
-			img(:class => "rounded", :src => "https://img.freepik.com/free-vector/gradient-brain-background_52683-120502.jpg?t=st=1712013658~exp=1712017258~hmac=0089d7679ace117c4616bb73902e97104f05501eed2b45daba7f787bd63f290d&w=2000", :alt => "Advanced Features")
+			img(:class => "rounded", :src => "https://images.unsplash.com/photo-1582120050926-68ba0fb56275?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29tcGxleHxlbnwwfHwwfHx8MA%3D%3D", :alt => "Advanced Features")
         ),
         divv(:class => "carousel-item",
 			h4("Automatic Sidebar and Nested Docs"),
@@ -491,8 +504,8 @@ to_html(
 				li("Create interactive, data-driven dashboards"),
 			),
 			p("Check out this example of a powerful AI-based web app built and deployed using Glass Notebook:"),
-			a(:href => "https://glassnotebook.io/r/nASpZq07Kwr4d9cD3uvcB/image_segmentation.jl", :target => "_blank", "AI-Powered Web App",
-			img(:class => "rounded", :src => "https://i.imgur.com/ER4aM2T.gif", :alt => "AI Web App Example")
+			a(:href => "https://glassnotebook.io/r/-mTfQ715HEjOHRVkIWLd9/image_segmentation_makie.jl", :target => "_blank", "AI-Powered Web App",
+			img(:class => "rounded", :src => "https://i.imgur.com/K8nmPm4.gif", :alt => "AI Web App Example")
 			),
         ),
         a(:class => "carousel-control prev", :href => "#", "&#10094;"),

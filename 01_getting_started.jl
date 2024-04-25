@@ -65,8 +65,8 @@ carousel_css = """
 .carousel {
     position: relative;
     width: 100%;
-    height: auto;
-    overflow: hidden;
+    height: 100vh;
+    overflow-y: auto;
     color: var(--pluto-output-color);
 }
 
@@ -74,6 +74,7 @@ carousel_css = """
     display: none;
     padding: 20px;
     width: 100%;
+    max-height: 100%;
     border-radius: 5px;
     background-color: var(--pluto-output-bg-color);
     overflow-y: auto;
@@ -302,7 +303,7 @@ to_html(
 			img(:class => "rounded", :src => "https://github.com/Dale-Black/GlassDocs/blob/master/assets/toggleprivate.jpeg?raw=true", :alt => "Toggle Privacy")
 		),
 		divv(:class => "carousel-item",
-			img(:class => "rounded", :src => "https://github.com/Dale-Black/GlassDocs/blob/master/assets/toggleinteractive.jpeg?raw=true", :alt => "Toggle Interactivity")
+			img(:class => "rounded", :src => "https://i.imgur.com/iuKjDGK.png", :alt => "Toggle Interactivity")
 		),
 		a(:class => "carousel-control prev", :href => "#", "&#10094;"),
 		a(:class => "carousel-control next", :href => "#", "&#10095;"),
